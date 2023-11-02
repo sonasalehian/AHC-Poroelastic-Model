@@ -1,5 +1,5 @@
 import sys
-sys.path.insert(0, "./anderson_junction_subsec5.1")
+sys.path.insert(0, "../anderson_junction_subsec5.1")
 from default_parameters import parameters
 from model import solve
 
