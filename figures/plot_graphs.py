@@ -1,21 +1,24 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 import numpy as np
-# from data_extraction_timeseries import timeseries_data
+#  Comment when running scienceplots
+from data_extraction_timeseries import timeseries_data
+##
 import sys
 sys.path.insert(0, "../anderson_junction_subsec5.1")
 from default_parameters import parameters
-import scienceplots
 
-plt.style.use(['science'])
+# import scienceplots
+
+# plt.style.use(['science'])
 
 time_steps = np.array([6, 12, 18, 36])
 
 directions = ['x', 'y']
 for direction in directions:
-
-    # timeseries_data(direction)
-
+    #  Comment when running scienceplots
+    timeseries_data(direction)
+    ##
     uz = np.zeros((1001, 2, time_steps.shape[0]))
 
     if direction == 'x':

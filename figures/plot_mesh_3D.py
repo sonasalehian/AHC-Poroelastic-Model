@@ -379,13 +379,13 @@ aquifersys_cellsPWF = GetOpacityTransferFunction('aquifersys_cells')
 # reset view to fit data
 renderView1.ResetCamera(False)
 
-ImportPresets(filename='./layers.json')
+ImportPresets(filename='./layer.json')
 
 # Apply a preset using its name. Note this may not work as expected when presets have duplicate names.
-aquifersys_cellsLUT.ApplyPreset('layers', True)
+aquifersys_cellsLUT.ApplyPreset('layer', True)
 
 # Apply a preset using its name. Note this may not work as expected when presets have duplicate names.
-aquifersys_cellsPWF.ApplyPreset('layers', True)
+aquifersys_cellsPWF.ApplyPreset('layer', True)
 
 # create a new 'Line'
 line1 = Line(registrationName='Line1')
@@ -1084,7 +1084,7 @@ renderView1.CameraViewUp = [0.3477815865532319, 0.3415146137700418, -0.873164209
 renderView1.CameraParallelScale = 2026.4747716169575
 
 # save screenshot
-SaveScreenshot('../output/mesh_3D.png', renderView1, ImageResolution=[3*1043, 3*793],
+SaveScreenshot('../output/plots/mesh_3D.png', renderView1, ImageResolution=[3*1043, 3*793],
     FontScaling='Scale fonts proportionally',
     OverrideColorPalette='',
     StereoMode='No change',

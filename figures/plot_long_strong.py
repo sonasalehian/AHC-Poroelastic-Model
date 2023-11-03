@@ -2,13 +2,16 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import numpy as np
 import os
-# from paraview_LOS_T import plot_LOS_T, data_LOS_T
+#  Comment when running scienceplots
+from paraview_LOS_T import plot_LOS_T, data_LOS_T
+##
 import sys
 sys.path.insert(0, "../anderson_junction_subsec5.1")
 from default_parameters import parameters
-import scienceplots
 
-plt.style.use(['science'])
+# import scienceplots
+
+# plt.style.use(['science'])
 
 inputfiles = ['AJ', 'strong_pumping', 'long_pumping_8d', 'long_pumping_16d']
 
@@ -30,12 +33,14 @@ if not isExist:
     # Create the directory
     os.mkdir(path)
 
+#  Comment when running scienceplots
 i = 0 
 for inputfile in inputfiles:
     print(inputfile, i)
-    # plot_LOS_T(inputfile, Ts[i])
-    # data_LOS_T(inputfile, Ts[i])
+    plot_LOS_T(inputfile, Ts[i])
+    data_LOS_T(inputfile, Ts[i])
     i += 1
+##
 
 directions = ['x', 'y']
 for direction in directions:
