@@ -80,27 +80,27 @@ These folders and files collectively provide a comprehensive resource for delvin
         </tr>
         <tr>
             <td rowspan=13>figures</td>
-            <td>data_extraction_T.py</td>
-            <td>To extract surface displacement along xx’ and yy’ in time T for different anisotropy ratio. It contains “data_deformation_T” function that used in plot_AR.py</td>
+            <td>0_data_extraction_t.py</td>
+            <td>To extract surface displacement along xx’ and yy’ in time T for different anisotropy ratio. It contains “data_deformation_T” function that used in plot_ar.py</td>
         </tr>
         <tr>
             <td>data_extraction_timeseries.py</td>
             <td>To extract surface displacement along xx’ and yy’ in different times. It contains “timeseries_data” function that uses in plot_graphs.py</td>
         </tr>
         <tr>
-            <td>paraview_AR.py</td>
-            <td>To plot surface displacement of given anisotropy ratio result using Paraview software. It contains “extract_paraview_AR” function that uses in plot_AR.py</td>
+            <td>0_paraview_ar.py</td>
+            <td>To plot surface displacement of given anisotropy ratio result using Paraview software. It contains “extract_paraview_AR” function that uses in plot_ar.py</td>
         </tr>
         <tr>
-            <td>paraview_flux.py</td>
-            <td>To plot the direction and magnitude of flux by arrows using Paraview software. It contains “textract_paraview_flux" function that uses in plot_flux.py</td>
+            <td>0_paraview_flux.py</td>
+            <td>To plot the direction and magnitude of flux by arrows using Paraview software. It contains “extract_paraview_flux" function that uses in plot_flux.py</td>
         </tr>
          <tr>
-            <td>paraview_LOS_T.py</td>
+            <td>0_paraview_los_t.py</td>
             <td>To plot surface displacement of different options and extract surface displacement along xx’ and yy’ in time T using Paraview software. It contains “plot_LOS_T” and “data_LOS_T” functions that uses in plot_long_strong.py</td>
         </tr>
          <tr>
-            <td>plot_AR.py*</td>
+            <td>plot_ar.py*</td>
             <td>To generate anisotropy ratio subfigures (figure 15)</td>
         </tr>
          <tr>
@@ -116,15 +116,15 @@ These folders and files collectively provide a comprehensive resource for delvin
             <td>To generate the subfigures of different aquifer tests (Figures 13, and 14)</td>
         </tr>
         <tr>
-            <td>plot_mesh_2D_EN.py*</td>
+            <td>plot_mesh_2d_en.py*</td>
             <td>To plot the surface of the mesh in ENU coordinate system using Paraview software</td>
         </tr>
         <tr>
-            <td>plot_mesh_2D_zy.py*</td>
+            <td>plot_mesh_2d_zy.py*</td>
             <td>To plot the cross-section of mesh in the zy direction (figure 8)</td>
         </tr>
         <tr>
-            <td>plot_mesh_3D.py*</td>
+            <td>plot_mesh_3d.py*</td>
             <td>To plot the 3D mesh (figure 8)</td>
         </tr>
         <tr>
