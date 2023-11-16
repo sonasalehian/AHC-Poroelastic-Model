@@ -80,7 +80,6 @@ These folders and files collectively provide a comprehensive resource for delvin
         </tr>
         <tr>
             <td rowspan=13>figures</td>
-	<tr>
             <td>02_plot_ar.py</td>
             <td>To generate anisotropy ratio subfigures (figure 15)</td>
         </tr>
@@ -131,7 +130,7 @@ These folders and files collectively provide a comprehensive resource for delvin
             <td>layers.json</td>
             <td>The preset colorbar to use for illustration</td>
         </tr>
-      <tr>
+        <tr>
             <td>output</td>
             <td></td>
             <td>All output files</td>
