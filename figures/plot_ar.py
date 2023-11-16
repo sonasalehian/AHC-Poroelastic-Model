@@ -3,8 +3,8 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import numpy as np
 # paraview functions:{
-from paraview_AR import extract_paraview_AR
-from data_extraction_T import data_deformation_T
+from paraview_ar import extract_paraview_AR
+from data_extraction_t import data_deformation_T
 # }
 import sys
 import os

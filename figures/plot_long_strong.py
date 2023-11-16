@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 import os
 #  Comment when running scienceplots
-from paraview_LOS_T import plot_LOS_T, data_LOS_T
+from paraview_los_t import plot_LOS_T, data_LOS_T
 ##
 import sys
 sys.path.insert(0, "../anderson_junction_subsec5.1")

@@ -41,7 +41,7 @@ These folders and files collectively provide a comprehensive resource for delvin
     <tbody>
         <tr>
             <td rowspan=4>anderson_junction_subsec5.1</td>
-            <td>anderson_junction.py*</td>
+            <td>01_anderson_junction.py</td>
             <td>To run the model using Anderson Junction aquifer properties and the Anderson Junction aquifer test</td>
         </tr>
         <tr>
@@ -58,29 +58,29 @@ These folders and files collectively provide a comprehensive resource for delvin
         </tr>
         <tr>
             <td rowspan=3>different_options_subsec5.2</td>
-            <td>strong_pumping.py*</td>
+            <td>01_strong_pumping.py</td>
             <td>To examine the model using Anderson Junction aquifer properties and the Anderson Junction aquifer test but with double pumping rate</td>
         </tr>
         <tr>
-            <td>long_pumping_8d.py*</td>
+            <td>01_long_pumping_8d.py</td>
             <td>To examine the model using Anderson Junction aquifer properties and the Anderson Junction aquifer test but with 8 days of pumping instead of 4 days</td>
         </tr>
         <tr>
-            <td>long_pumping_16d.py*</td>
+            <td>01_long_pumping_16d.py</td>
             <td>To examine the model using Anderson Junction aquifer properties and the Anderson Junction aquifer test but with 16 days of pumping instead of 4 days</td>
         </tr>
             <tr>
             <td rowspan=2>anisotropy_ratio_subsec5.4</td>
-            <td>anisotropy_ratio1_1.py*</td>
+            <td>01_anisotropy_ratio1_1.py</td>
             <td>To examine the model using the Anderson Junction aquifer test, and Anderson Junction aquifer properties but with same hydraulic conductivity in directions of x and y (isotropy)</td>
         </tr>
         <tr>
-            <td>anisotropy_ratio3_1.py*</td>
+            <td>01_anisotropy_ratio3_1.py</td>
             <td>To examine the model using the Anderson Junction aquifer test, and Anderson Junction aquifer properties but with anisotropy ratio of 3:1</td>
         </tr>
         <tr>
             <td rowspan=13>figures</td>
-            <td>0_data_extraction_t.py</td>
+            <td>data_extraction_t.py</td>
             <td>To extract surface displacement along xx’ and yy’ in time T for different anisotropy ratio. It contains “data_deformation_T” function that used in plot_ar.py</td>
         </tr>
         <tr>
@@ -88,43 +88,43 @@ These folders and files collectively provide a comprehensive resource for delvin
             <td>To extract surface displacement along xx’ and yy’ in different times. It contains “timeseries_data” function that uses in plot_graphs.py</td>
         </tr>
         <tr>
-            <td>0_paraview_ar.py</td>
+            <td>paraview_ar.py</td>
             <td>To plot surface displacement of given anisotropy ratio result using Paraview software. It contains “extract_paraview_AR” function that uses in plot_ar.py</td>
         </tr>
         <tr>
-            <td>0_paraview_flux.py</td>
+            <td>paraview_flux.py</td>
             <td>To plot the direction and magnitude of flux by arrows using Paraview software. It contains “extract_paraview_flux" function that uses in plot_flux.py</td>
         </tr>
          <tr>
-            <td>0_paraview_los_t.py</td>
+            <td>paraview_los_t.py</td>
             <td>To plot surface displacement of different options and extract surface displacement along xx’ and yy’ in time T using Paraview software. It contains “plot_LOS_T” and “data_LOS_T” functions that uses in plot_long_strong.py</td>
         </tr>
          <tr>
-            <td>plot_ar.py*</td>
+            <td>02_plot_ar.py</td>
             <td>To generate anisotropy ratio subfigures (figure 15)</td>
         </tr>
          <tr>
-            <td>plot_flux.py*</td>
+            <td>02_plot_flux.py</td>
             <td>To generate the flux subfigures (Figure 11)</td>
         </tr>
          <tr>
-            <td>plot_graphs.py*</td>
+            <td>02_plot_graphs.py</td>
             <td>To generate the deformation in different time in x, and y direction (Figure 12)</td>
         </tr>
          <tr>
-            <td>plot_long_strong.py*</td>
+            <td>02_plot_long_strong.py</td>
             <td>To generate the subfigures of different aquifer tests (Figures 13, and 14)</td>
         </tr>
         <tr>
-            <td>plot_mesh_2d_en.py*</td>
+            <td>02_plot_mesh_2d_en.py</td>
             <td>To plot the surface of the mesh in ENU coordinate system using Paraview software</td>
         </tr>
         <tr>
-            <td>plot_mesh_2d_zy.py*</td>
+            <td>02_plot_mesh_2d_zy.py</td>
             <td>To plot the cross-section of mesh in the zy direction (figure 8)</td>
         </tr>
         <tr>
-            <td>plot_mesh_3d.py*</td>
+            <td>02_plot_mesh_3d.py</td>
             <td>To plot the 3D mesh (figure 8)</td>
         </tr>
         <tr>
@@ -143,7 +143,7 @@ These folders and files collectively provide a comprehensive resource for delvin
         </tr>
     </tbody> 
 </table>
-*: You can run these python files using FEniCSx, however you need other python files to run them. 
+Note: Codes prefixed with "01_" should be executed first, as they generate outputs essential for the subsequent execution of codes prefixed with "02_". Additionally, other codes without specific prefixes contains supportive functions to run other codes. 
 
 Getting started
 ===========
