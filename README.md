@@ -46,53 +46,140 @@ These folders and files collectively provide a comprehensive resource for
 delving into the various aspects discussed in the corresponding sections of the
 paper.
 
-| **Folder name**               | **File name**                                                                                                                                                                                                                | **Description**                                                                                                                                                                  |
-|-------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| anderson_junction_subsec5.1   | 01_anderson_junction.py                                                                                                                                                                                                      | To run the model using Anderson Junction aquifer properties and the Anderson Junction aquifer test                                                                               |
-| default_parameters.py         | Anderson Junction properties                                                                                                                                                                                                 |
-| model.py                      | The proposed model                                                                                                                                                                                                           |
-| utils.py                      | To print in parallel running                                                                                                                                                                                                 |
-| different_options_subsec5.2   | 01_strong_pumping.py                                                                                                                                                                                                         | To examine the model using Anderson Junction aquifer properties and the Anderson Junction aquifer test but with double pumping rate                                              |
-| 01_long_pumping_8d.py         | To examine the model using Anderson Junction aquifer properties and the Anderson Junction aquifer test but with 8 days of pumping instead of 4 days                                                                          |
-| 01_long_pumping_16d.py        | To examine the model using Anderson Junction aquifer properties and the Anderson Junction aquifer test but with 16 days of pumping instead of 4 days                                                                         |
-| anisotropy_ratio_subsec5.4    | 01_anisotropy_ratio1_1.py                                                                                                                                                                                                    | To examine the model using the Anderson Junction aquifer test, and Anderson Junction aquifer properties but with same hydraulic conductivity in directions of x and y (isotropy) |
-| 01_anisotropy_ratio3_1.py     | To examine the model using the Anderson Junction aquifer test, and Anderson Junction aquifer properties but with anisotropy ratio of 3:1                                                                                     |
-| figures                       | 02_plot_ar.py                                                                                                                                                                                                                | To generate anisotropy ratio subfigures (figure 15)                                                                                                                              |
-| 02_plot_flux.py               | To generate the flux subfigures (Figure 11)                                                                                                                                                                                  |
-| 02_plot_graphs.py             | To generate the deformation in different time in x, and y direction (Figure 12)                                                                                                                                              |
-| 02_plot_long_strong.py        | To generate the subfigures of different aquifer tests (Figures 13, and 14)                                                                                                                                                   |
-| 02_plot_mesh_2d_en.py         | To plot the surface of the mesh in ENU coordinate system using Paraview software                                                                                                                                             |
-| 02_plot_mesh_2d_zy.py         | To plot the cross-section of mesh in the zy direction (figure 8)                                                                                                                                                             |
-| 02_plot_mesh_3d.py            | To plot the 3D mesh (figure 8)                                                                                                                                                                                               |
-| data_extraction_timeseries.py | To extract surface displacement along xx’ and yy’ in different times. It contains “timeseries_data” function that uses in plot_graphs.py                                                                                     |
-| paraview_ar.py                | To plot surface displacement of given anisotropy ratio result using Paraview software. It contains “extract_paraview_AR” function that uses in plot_ar.py                                                                    |
-| paraview_flux.py              | To plot the direction and magnitude of flux by arrows using Paraview software. It contains “extract_paraview_flux" function that uses in plot_flux.py                                                                        |
-| paraview_los_t.py             | To plot surface displacement of different options and extract surface displacement along xx’ and yy’ in time T using Paraview software. It contains “plot_LOS_T” and “data_LOS_T” functions that uses in plot_long_strong.py |
-| layers.json                   | The preset colorbar to use for illustration                                                                                                                                                                                  |
-| output                        | All output files                                                                                                                                                                                                             |
-| launch_container.sh           | To run dolfinx using docker                                                                                                                                                                                                  |
+<table>
+    <thead>
+        <tr>
+            <th>Folder name</th>
+            <th>File name</th>
+            <th>Description</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td rowspan=4>anderson_junction_subsec5.1</td>
+            <td>01_anderson_junction.py</td>
+            <td>To run the model using Anderson Junction aquifer properties and the Anderson Junction aquifer test</td>
+        </tr>
+        <tr>
+            <td>default_parameters.py</td>
+            <td>Anderson Junction properties</td>
+        </tr>
+        <tr>
+            <td>model.py</td>
+            <td>The proposed model</td>
+        </tr>
+        <tr>
+            <td>utils.py</td>
+            <td>To print in parallel running</td>
+        </tr>
+        <tr>
+            <td rowspan=3>different_options_subsec5.2</td>
+            <td>01_strong_pumping.py</td>
+            <td>To examine the model using Anderson Junction aquifer properties and the Anderson Junction aquifer test but with double pumping rate</td>
+        </tr>
+        <tr>
+            <td>01_long_pumping_8d.py</td>
+            <td>To examine the model using Anderson Junction aquifer properties and the Anderson Junction aquifer test but with 8 days of pumping instead of 4 days</td>
+        </tr>
+        <tr>
+            <td>01_long_pumping_16d.py</td>
+            <td>To examine the model using Anderson Junction aquifer properties and the Anderson Junction aquifer test but with 16 days of pumping instead of 4 days</td>
+        </tr>
+            <tr>
+            <td rowspan=2>anisotropy_ratio_subsec5.4</td>
+            <td>01_anisotropy_ratio1_1.py</td>
+            <td>To examine the model using the Anderson Junction aquifer test, and Anderson Junction aquifer properties but with same hydraulic conductivity in directions of x and y (isotropy)</td>
+        </tr>
+        <tr>
+            <td>01_anisotropy_ratio3_1.py</td>
+            <td>To examine the model using the Anderson Junction aquifer test, and Anderson Junction aquifer properties but with anisotropy ratio of 3:1</td>
+        </tr>
+        <tr>
+            <td rowspan=13>figures</td>
+            <td>02_plot_ar.py</td>
+            <td>To generate anisotropy ratio subfigures (figure 15)</td>
+        </tr>
+         <tr>
+            <td>02_plot_flux.py</td>
+            <td>To generate the flux subfigures (Figure 11)</td>
+        </tr>
+         <tr>
+            <td>02_plot_graphs.py</td>
+            <td>To generate the deformation in different time in x, and y direction (Figure 12)</td>
+        </tr>
+         <tr>
+            <td>02_plot_long_strong.py</td>
+            <td>To generate the subfigures of different aquifer tests (Figures 13, and 14)</td>
+        </tr>
+        <tr>
+            <td>02_plot_mesh_2d_en.py</td>
+            <td>To plot the surface of the mesh in ENU coordinate system using Paraview software</td>
+        </tr>
+        <tr>
+            <td>02_plot_mesh_2d_zy.py</td>
+            <td>To plot the cross-section of mesh in the zy direction (figure 8)</td>
+        </tr>
+        <tr>
+            <td>02_plot_mesh_3d.py</td>
+            <td>To plot the 3D mesh (figure 8)</td>
+        </tr>
+            <td>data_extraction_t.py</td>
+            <td>To extract surface displacement along xx’ and yy’ in time T for different anisotropy ratio. It contains “data_deformation_T” function that used in plot_ar.py</td>
+        </tr>
+        <tr>
+            <td>data_extraction_timeseries.py</td>
+            <td>To extract surface displacement along xx’ and yy’ in different times. It contains “timeseries_data” function that uses in plot_graphs.py</td>
+        </tr>
+        <tr>
+            <td>paraview_ar.py</td>
+            <td>To plot surface displacement of given anisotropy ratio result using Paraview software. It contains “extract_paraview_AR” function that uses in plot_ar.py</td>
+        </tr>
+        <tr>
+            <td>paraview_flux.py</td>
+            <td>To plot the direction and magnitude of flux by arrows using Paraview software. It contains “extract_paraview_flux" function that uses in plot_flux.py</td>
+        </tr>
+         <tr>
+            <td>paraview_los_t.py</td>
+            <td>To plot surface displacement of different options and extract surface displacement along xx’ and yy’ in time T using Paraview software. It contains “plot_LOS_T” and “data_LOS_T” functions that uses in plot_long_strong.py</td>
+        </tr>
+        <tr>
+            <td>layers.json</td>
+            <td>The preset colorbar to use for illustration</td>
+        </tr>
+        <tr>
+            <td>output</td>
+            <td></td>
+            <td>All output files</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>launch_container.sh</td>
+            <td>To run dolfinx using docker</td>
+        </tr>
+    </tbody> 
+</table>
+
 
 Instructions
 ============
 
-1. If Docker is available on your device, you can use the "launch_container.sh"
-   script for setup. Alternatively, refer to the FEniCSx image for alternative
-   methods to access their package.
+1. If Docker is available on your device, you can use the `launch_container.sh`
+   to launch a container. Alternatively, refer to the FEniCSx website for
+   alternative installation methods.
 
 		./launch_container.sh
 
    Then navigate to the folder that you want to run a code.
        
-2. Within the FEniCSx, you can execute the Python files denoted with an
-   asterisk (*) in the table (except those within the figures folder). Use the
-   following command inside the dolfinx image:
+2. Within the container, you can execute the Python files denoted with an
+   asterisk (\*) in the table (except those within the figures folder):
 
        python3 [name_of_file].py
        
-3. For executing plot-related Python files in the "figures" folder:
+3. For executing plot-related Python files in the `figures/` folder:
        
 - If you intend to use Paraview functions (while commenting out the
-  scienceplots commands),  use the following command outside the dolfinx image:
+  scienceplots commands), use the following command outside the dolfinx image:
        
        pvpython [name_of_file].py
        
