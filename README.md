@@ -13,10 +13,10 @@ numerical methods for solving partial differential equations, making it
 well-suited for our groundwater modeling purposes. 
 
 For a comprehensive understanding of this project, please refer to the
-corresponding paper: [Insert paper link Here].
+corresponding paper: [insert paper link Here].
 
-Additionally, you can explore the project's results and accompanying figures on
-my Figshare account: [Insert Figshare Link Here].
+This repository was also permanently archived at: [insert figshare doi link
+here].
 
 Instructions
 ============
@@ -54,7 +54,7 @@ subsection within the paper. The folders are as follows:
    exploration of different options, as discussed in subsection 5.2 of the
    paper.
       
-3. `anisotropy_ratio_subsec5.4`: This folder is dedicated to the investigation of
+3. `anisotropy_ratio_subsec5.4/`: This folder is dedicated to the investigation of
    anisotropy ratios, the focus of subsection 5.4.
        
 4. `figures/`: Within this folder, you can access scripts to generate all of
@@ -84,7 +84,7 @@ paper.
             <td>To run the model using Anderson Junction aquifer properties and the Anderson Junction aquifer test</td>
         </tr>
         <tr>
-            <td>default_parameters.py</td>
+            <td>`default_parameters.py`</td>
             <td>Anderson Junction properties</td>
         </tr>
         <tr>
