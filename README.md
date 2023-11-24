@@ -18,11 +18,34 @@ corresponding paper: [Insert paper link Here].
 Additionally, you can explore the project's results and accompanying figures on
 my Figshare account: [Insert Figshare Link Here].
 
-Description of files
-===========
+Instructions
+============
 
-Within this repository, you will encounter four folders, each associated with a
-specific results subsection within the paper. The folders are as follows:
+1. If Docker is available on your device, you can use the `launch_container.sh`
+   to launch a container. Alternatively, refer to the FEniCSx website for
+   alternative installation methods.
+
+		./launch_container.sh
+
+   Then navigate to the folder that you want to run a code.
+       
+2. Within the container, you can execute the Python files denoted with an
+   asterisk (\*) in the table (except those within the figures folder):
+
+       python3 [name_of_file].py
+       
+3. For executing plot-related Python files in the `figures/` folder, You
+   must first install `paraview` and the Python package `scienceplots`
+   inside the running container before executing the scripts.
+
+       apt install paraview
+       pip install scienceplots
+
+Description of files
+====================
+
+This repository contains four folders, each associated with a specific results
+subsection within the paper. The folders are as follows:
 
 1. `anderson_junction_subsec5.1/`: This folder pertains to the Anderson Junction
    case study and its associated details.
@@ -31,11 +54,11 @@ specific results subsection within the paper. The folders are as follows:
    exploration of different options, as discussed in subsection 5.2 of the
    paper.
       
-3. anisotropy_ratio_subsec5.4: This folder is dedicated to the investigation of
-   anisotropy ratios, a focus of subsection 5.4.
+3. `anisotropy_ratio_subsec5.4`: This folder is dedicated to the investigation of
+   anisotropy ratios, the focus of subsection 5.4.
        
-4. figures: Within this folder, you can access all the figures referred to in
-   the paper.
+4. `figures/`: Within this folder, you can access scripts to generate all of
+   the figures referred to in the paper.
        
 Files prefixed with "01_" should be executed first, as they generate outputs
 essential for the subsequent execution of files prefixed with "02_"
@@ -160,36 +183,6 @@ paper.
 </table>
 
 
-Instructions
-============
-
-1. If Docker is available on your device, you can use the `launch_container.sh`
-   to launch a container. Alternatively, refer to the FEniCSx website for
-   alternative installation methods.
-
-		./launch_container.sh
-
-   Then navigate to the folder that you want to run a code.
-       
-2. Within the container, you can execute the Python files denoted with an
-   asterisk (\*) in the table (except those within the figures folder):
-
-       python3 [name_of_file].py
-       
-3. For executing plot-related Python files in the `figures/` folder:
-       
-- If you intend to use Paraview functions (while commenting out the
-  scienceplots commands), use the following command outside the dolfinx image:
-       
-       pvpython [name_of_file].py
-       
-- If you intend to use the scienceplots library (while commenting out the
-  Paraview commands), execute the file outside the dolfinx image:
-           
-      python3 [name_of_file].py
-	
-In the first time, you need to run with paraview commands first, and then run
-with scienceplots to produce the figures. 
 
 How to modify the model
 =======================
