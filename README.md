@@ -84,7 +84,7 @@ paper.
             <td>To run the model using Anderson Junction aquifer properties and the Anderson Junction aquifer test</td>
         </tr>
         <tr>
-            <td>`default_parameters.py`</td>
+            <td>default_parameters.py</td>
             <td>Anderson Junction properties</td>
         </tr>
         <tr>
