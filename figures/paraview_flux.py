@@ -157,7 +157,7 @@ def extract_paraview_flux(direction, t):
   fluxbpDisplay.SelectionPointLabelShadow = 0
   fluxbpDisplay.PolarAxes = 'PolarAxesRepresentation'
   fluxbpDisplay.ScalarOpacityFunction = None
-  fluxbpDisplay.ScalarOpacityUnitDistance = 59.8130778687876
+  fluxbpDisplay.ScalarOpacityUnitDistance = 60.29637080930927
   fluxbpDisplay.UseSeparateOpacityArray = 0
   fluxbpDisplay.OpacityArrayName = ['POINTS', 'f']
   fluxbpDisplay.OpacityComponent = 'X'
@@ -166,7 +166,7 @@ def extract_paraview_flux(direction, t):
   fluxbpDisplay.UseFloatingPointFrameBuffer = 1
 
   # init the 'PiecewiseFunction' selected for 'OSPRayScaleFunction'
-  fluxbpDisplay.OSPRayScaleFunction.Points = [0.0, 0.0, 0.5, 0.0, 1.0, 1.0, 0.5, 0.0]
+  fluxbpDisplay.OSPRayScaleFunction.Points = [2.1729651585822833e-11, 0.0, 0.5, 0.0, 5.3463965968432026e-05, 1.0, 0.5, 0.0]
   fluxbpDisplay.OSPRayScaleFunction.UseLogScale = 0
 
   # init the 'Arrow' selected for 'GlyphType'
@@ -373,9 +373,356 @@ def extract_paraview_flux(direction, t):
   # get opacity transfer function/opacity map for 'f'
   fPWF = GetOpacityTransferFunction('f')
 
+  # create a new 'Calculator'
+  calculator1 = Calculator(registrationName='Calculator1', Input=fluxbp)
+  calculator1.AttributeType = 'Point Data'
+  calculator1.CoordinateResults = 0
+  calculator1.ResultNormals = 0
+  calculator1.ResultTCoords = 0
+  calculator1.ResultArrayName = 'Result'
+  calculator1.Function = ''
+  calculator1.ReplaceInvalidResults = 1
+  calculator1.ReplacementValue = 0.0
+  calculator1.ResultArrayType = 'Double'
+
+  # Properties modified on calculator1
+  calculator1.Function = 'log(abs(f+10^(-13))*10^13)'
+
+  # show data in view
+  calculator1Display = Show(calculator1, renderView1, 'UnstructuredGridRepresentation')
+
+  # trace defaults for the display properties.
+  calculator1Display.Selection = None
+  calculator1Display.Representation = 'Surface'
+  calculator1Display.ColorArrayName = ['POINTS', 'f']
+  calculator1Display.LookupTable = fLUT
+  calculator1Display.MapScalars = 1
+  calculator1Display.MultiComponentsMapping = 0
+  calculator1Display.InterpolateScalarsBeforeMapping = 1
+  calculator1Display.Opacity = 1.0
+  calculator1Display.PointSize = 2.0
+  calculator1Display.LineWidth = 1.0
+  calculator1Display.RenderLinesAsTubes = 0
+  calculator1Display.RenderPointsAsSpheres = 0
+  calculator1Display.Interpolation = 'Gouraud'
+  calculator1Display.Specular = 0.0
+  calculator1Display.SpecularColor = [1.0, 1.0, 1.0]
+  calculator1Display.SpecularPower = 100.0
+  calculator1Display.Luminosity = 0.0
+  calculator1Display.Ambient = 0.0
+  calculator1Display.Diffuse = 1.0
+  calculator1Display.Roughness = 0.3
+  calculator1Display.Metallic = 0.0
+  calculator1Display.EdgeTint = [1.0, 1.0, 1.0]
+  calculator1Display.Anisotropy = 0.0
+  calculator1Display.AnisotropyRotation = 0.0
+  calculator1Display.BaseIOR = 1.5
+  calculator1Display.CoatStrength = 0.0
+  calculator1Display.CoatIOR = 2.0
+  calculator1Display.CoatRoughness = 0.0
+  calculator1Display.CoatColor = [1.0, 1.0, 1.0]
+  calculator1Display.SelectTCoordArray = 'None'
+  calculator1Display.SelectNormalArray = 'None'
+  calculator1Display.SelectTangentArray = 'None'
+  calculator1Display.Texture = None
+  calculator1Display.RepeatTextures = 1
+  calculator1Display.InterpolateTextures = 0
+  calculator1Display.SeamlessU = 0
+  calculator1Display.SeamlessV = 0
+  calculator1Display.UseMipmapTextures = 0
+  calculator1Display.ShowTexturesOnBackface = 1
+  calculator1Display.BaseColorTexture = None
+  calculator1Display.NormalTexture = None
+  calculator1Display.NormalScale = 1.0
+  calculator1Display.CoatNormalTexture = None
+  calculator1Display.CoatNormalScale = 1.0
+  calculator1Display.MaterialTexture = None
+  calculator1Display.OcclusionStrength = 1.0
+  calculator1Display.AnisotropyTexture = None
+  calculator1Display.EmissiveTexture = None
+  calculator1Display.EmissiveFactor = [1.0, 1.0, 1.0]
+  calculator1Display.FlipTextures = 0
+  calculator1Display.BackfaceRepresentation = 'Follow Frontface'
+  calculator1Display.BackfaceAmbientColor = [1.0, 1.0, 1.0]
+  calculator1Display.BackfaceOpacity = 1.0
+  calculator1Display.Position = [0.0, 0.0, 0.0]
+  calculator1Display.Scale = [1.0, 1.0, 1.0]
+  calculator1Display.Orientation = [0.0, 0.0, 0.0]
+  calculator1Display.Origin = [0.0, 0.0, 0.0]
+  calculator1Display.CoordinateShiftScaleMethod = 'Always Auto Shift Scale'
+  calculator1Display.Pickable = 1
+  calculator1Display.Triangulate = 0
+  calculator1Display.UseShaderReplacements = 0
+  calculator1Display.ShaderReplacements = ''
+  calculator1Display.NonlinearSubdivisionLevel = 1
+  calculator1Display.UseDataPartitions = 0
+  calculator1Display.OSPRayUseScaleArray = 'All Approximate'
+  calculator1Display.OSPRayScaleArray = 'Result'
+  calculator1Display.OSPRayScaleFunction = 'PiecewiseFunction'
+  calculator1Display.OSPRayMaterial = 'None'
+  calculator1Display.BlockSelectors = ['/']
+  calculator1Display.BlockColors = []
+  calculator1Display.BlockOpacities = []
+  calculator1Display.Orient = 0
+  calculator1Display.OrientationMode = 'Direction'
+  calculator1Display.SelectOrientationVectors = 'Result'
+  calculator1Display.Scaling = 0
+  calculator1Display.ScaleMode = 'No Data Scaling Off'
+  calculator1Display.ScaleFactor = 350.00000000000006
+  calculator1Display.SelectScaleArray = 'None'
+  calculator1Display.GlyphType = 'Arrow'
+  calculator1Display.UseGlyphTable = 0
+  calculator1Display.GlyphTableIndexArray = 'None'
+  calculator1Display.UseCompositeGlyphTable = 0
+  calculator1Display.UseGlyphCullingAndLOD = 0
+  calculator1Display.LODValues = []
+  calculator1Display.ColorByLODIndex = 0
+  calculator1Display.GaussianRadius = 17.500000000000004
+  calculator1Display.ShaderPreset = 'Sphere'
+  calculator1Display.CustomTriangleScale = 3
+  calculator1Display.CustomShader = """ // This custom shader code define a gaussian blur
+  // Please take a look into vtkSMPointGaussianRepresentation.cxx
+  // for other custom shader examples
+  //VTK::Color::Impl
+    float dist2 = dot(offsetVCVSOutput.xy,offsetVCVSOutput.xy);
+    float gaussian = exp(-0.5*dist2);
+    opacity = opacity*gaussian;
+  """
+  calculator1Display.Emissive = 0
+  calculator1Display.ScaleByArray = 0
+  calculator1Display.SetScaleArray = ['POINTS', 'Result']
+  calculator1Display.ScaleArrayComponent = 'X'
+  calculator1Display.UseScaleFunction = 1
+  calculator1Display.ScaleTransferFunction = 'PiecewiseFunction'
+  calculator1Display.OpacityByArray = 0
+  calculator1Display.OpacityArray = ['POINTS', 'Result']
+  calculator1Display.OpacityArrayComponent = 'X'
+  calculator1Display.OpacityTransferFunction = 'PiecewiseFunction'
+  calculator1Display.DataAxesGrid = 'GridAxesRepresentation'
+  calculator1Display.SelectionCellLabelBold = 0
+  calculator1Display.SelectionCellLabelColor = [0.0, 1.0, 0.0]
+  calculator1Display.SelectionCellLabelFontFamily = 'Arial'
+  calculator1Display.SelectionCellLabelFontFile = ''
+  calculator1Display.SelectionCellLabelFontSize = 18
+  calculator1Display.SelectionCellLabelItalic = 0
+  calculator1Display.SelectionCellLabelJustification = 'Left'
+  calculator1Display.SelectionCellLabelOpacity = 1.0
+  calculator1Display.SelectionCellLabelShadow = 0
+  calculator1Display.SelectionPointLabelBold = 0
+  calculator1Display.SelectionPointLabelColor = [1.0, 1.0, 0.0]
+  calculator1Display.SelectionPointLabelFontFamily = 'Arial'
+  calculator1Display.SelectionPointLabelFontFile = ''
+  calculator1Display.SelectionPointLabelFontSize = 18
+  calculator1Display.SelectionPointLabelItalic = 0
+  calculator1Display.SelectionPointLabelJustification = 'Left'
+  calculator1Display.SelectionPointLabelOpacity = 1.0
+  calculator1Display.SelectionPointLabelShadow = 0
+  calculator1Display.PolarAxes = 'PolarAxesRepresentation'
+  calculator1Display.ScalarOpacityFunction = fPWF
+  calculator1Display.ScalarOpacityUnitDistance = 60.29637080930927
+  calculator1Display.UseSeparateOpacityArray = 0
+  calculator1Display.OpacityArrayName = ['POINTS', 'Result']
+  calculator1Display.OpacityComponent = 'X'
+  calculator1Display.SelectMapper = 'Projected tetra'
+  calculator1Display.SamplingDimensions = [128, 128, 128]
+  calculator1Display.UseFloatingPointFrameBuffer = 1
+
+  # init the 'PiecewiseFunction' selected for 'OSPRayScaleFunction'
+  calculator1Display.OSPRayScaleFunction.Points = [2.1729651585822833e-11, 0.0, 0.5, 0.0, 5.3463965968432026e-05, 1.0, 0.5, 0.0]
+  calculator1Display.OSPRayScaleFunction.UseLogScale = 0
+
+  # init the 'Arrow' selected for 'GlyphType'
+  calculator1Display.GlyphType.TipResolution = 6
+  calculator1Display.GlyphType.TipRadius = 0.1
+  calculator1Display.GlyphType.TipLength = 0.35
+  calculator1Display.GlyphType.ShaftResolution = 6
+  calculator1Display.GlyphType.ShaftRadius = 0.03
+  calculator1Display.GlyphType.Invert = 0
+
+  # init the 'PiecewiseFunction' selected for 'ScaleTransferFunction'
+  calculator1Display.ScaleTransferFunction.Points = [0.0, 0.0, 0.5, 0.0, 1.1757813367477812e-38, 1.0, 0.5, 0.0]
+  calculator1Display.ScaleTransferFunction.UseLogScale = 0
+
+  # init the 'PiecewiseFunction' selected for 'OpacityTransferFunction'
+  calculator1Display.OpacityTransferFunction.Points = [0.0, 0.0, 0.5, 0.0, 1.1757813367477812e-38, 1.0, 0.5, 0.0]
+  calculator1Display.OpacityTransferFunction.UseLogScale = 0
+
+  # init the 'GridAxesRepresentation' selected for 'DataAxesGrid'
+  calculator1Display.DataAxesGrid.XTitle = 'X Axis'
+  calculator1Display.DataAxesGrid.YTitle = 'Y Axis'
+  calculator1Display.DataAxesGrid.ZTitle = 'Z Axis'
+  calculator1Display.DataAxesGrid.XTitleFontFamily = 'Arial'
+  calculator1Display.DataAxesGrid.XTitleFontFile = ''
+  calculator1Display.DataAxesGrid.XTitleBold = 0
+  calculator1Display.DataAxesGrid.XTitleItalic = 0
+  calculator1Display.DataAxesGrid.XTitleFontSize = 12
+  calculator1Display.DataAxesGrid.XTitleShadow = 0
+  calculator1Display.DataAxesGrid.XTitleOpacity = 1.0
+  calculator1Display.DataAxesGrid.YTitleFontFamily = 'Arial'
+  calculator1Display.DataAxesGrid.YTitleFontFile = ''
+  calculator1Display.DataAxesGrid.YTitleBold = 0
+  calculator1Display.DataAxesGrid.YTitleItalic = 0
+  calculator1Display.DataAxesGrid.YTitleFontSize = 12
+  calculator1Display.DataAxesGrid.YTitleShadow = 0
+  calculator1Display.DataAxesGrid.YTitleOpacity = 1.0
+  calculator1Display.DataAxesGrid.ZTitleFontFamily = 'Arial'
+  calculator1Display.DataAxesGrid.ZTitleFontFile = ''
+  calculator1Display.DataAxesGrid.ZTitleBold = 0
+  calculator1Display.DataAxesGrid.ZTitleItalic = 0
+  calculator1Display.DataAxesGrid.ZTitleFontSize = 12
+  calculator1Display.DataAxesGrid.ZTitleShadow = 0
+  calculator1Display.DataAxesGrid.ZTitleOpacity = 1.0
+  calculator1Display.DataAxesGrid.FacesToRender = 63
+  calculator1Display.DataAxesGrid.CullBackface = 0
+  calculator1Display.DataAxesGrid.CullFrontface = 1
+  calculator1Display.DataAxesGrid.ShowGrid = 0
+  calculator1Display.DataAxesGrid.ShowEdges = 1
+  calculator1Display.DataAxesGrid.ShowTicks = 1
+  calculator1Display.DataAxesGrid.LabelUniqueEdgesOnly = 1
+  calculator1Display.DataAxesGrid.AxesToLabel = 63
+  calculator1Display.DataAxesGrid.XLabelFontFamily = 'Arial'
+  calculator1Display.DataAxesGrid.XLabelFontFile = ''
+  calculator1Display.DataAxesGrid.XLabelBold = 0
+  calculator1Display.DataAxesGrid.XLabelItalic = 0
+  calculator1Display.DataAxesGrid.XLabelFontSize = 12
+  calculator1Display.DataAxesGrid.XLabelShadow = 0
+  calculator1Display.DataAxesGrid.XLabelOpacity = 1.0
+  calculator1Display.DataAxesGrid.YLabelFontFamily = 'Arial'
+  calculator1Display.DataAxesGrid.YLabelFontFile = ''
+  calculator1Display.DataAxesGrid.YLabelBold = 0
+  calculator1Display.DataAxesGrid.YLabelItalic = 0
+  calculator1Display.DataAxesGrid.YLabelFontSize = 12
+  calculator1Display.DataAxesGrid.YLabelShadow = 0
+  calculator1Display.DataAxesGrid.YLabelOpacity = 1.0
+  calculator1Display.DataAxesGrid.ZLabelFontFamily = 'Arial'
+  calculator1Display.DataAxesGrid.ZLabelFontFile = ''
+  calculator1Display.DataAxesGrid.ZLabelBold = 0
+  calculator1Display.DataAxesGrid.ZLabelItalic = 0
+  calculator1Display.DataAxesGrid.ZLabelFontSize = 12
+  calculator1Display.DataAxesGrid.ZLabelShadow = 0
+  calculator1Display.DataAxesGrid.ZLabelOpacity = 1.0
+  calculator1Display.DataAxesGrid.XAxisNotation = 'Mixed'
+  calculator1Display.DataAxesGrid.XAxisPrecision = 2
+  calculator1Display.DataAxesGrid.XAxisUseCustomLabels = 0
+  calculator1Display.DataAxesGrid.XAxisLabels = []
+  calculator1Display.DataAxesGrid.YAxisNotation = 'Mixed'
+  calculator1Display.DataAxesGrid.YAxisPrecision = 2
+  calculator1Display.DataAxesGrid.YAxisUseCustomLabels = 0
+  calculator1Display.DataAxesGrid.YAxisLabels = []
+  calculator1Display.DataAxesGrid.ZAxisNotation = 'Mixed'
+  calculator1Display.DataAxesGrid.ZAxisPrecision = 2
+  calculator1Display.DataAxesGrid.ZAxisUseCustomLabels = 0
+  calculator1Display.DataAxesGrid.ZAxisLabels = []
+  calculator1Display.DataAxesGrid.UseCustomBounds = 0
+  calculator1Display.DataAxesGrid.CustomBounds = [0.0, 1.0, 0.0, 1.0, 0.0, 1.0]
+
+  # init the 'PolarAxesRepresentation' selected for 'PolarAxes'
+  calculator1Display.PolarAxes.Visibility = 0
+  calculator1Display.PolarAxes.Translation = [0.0, 0.0, 0.0]
+  calculator1Display.PolarAxes.Scale = [1.0, 1.0, 1.0]
+  calculator1Display.PolarAxes.Orientation = [0.0, 0.0, 0.0]
+  calculator1Display.PolarAxes.EnableCustomBounds = [0, 0, 0]
+  calculator1Display.PolarAxes.CustomBounds = [0.0, 1.0, 0.0, 1.0, 0.0, 1.0]
+  calculator1Display.PolarAxes.EnableCustomRange = 0
+  calculator1Display.PolarAxes.CustomRange = [0.0, 1.0]
+  calculator1Display.PolarAxes.PolarAxisVisibility = 1
+  calculator1Display.PolarAxes.RadialAxesVisibility = 1
+  calculator1Display.PolarAxes.DrawRadialGridlines = 1
+  calculator1Display.PolarAxes.PolarArcsVisibility = 1
+  calculator1Display.PolarAxes.DrawPolarArcsGridlines = 1
+  calculator1Display.PolarAxes.NumberOfRadialAxes = 0
+  calculator1Display.PolarAxes.AutoSubdividePolarAxis = 1
+  calculator1Display.PolarAxes.NumberOfPolarAxis = 0
+  calculator1Display.PolarAxes.MinimumRadius = 0.0
+  calculator1Display.PolarAxes.MinimumAngle = 0.0
+  calculator1Display.PolarAxes.MaximumAngle = 90.0
+  calculator1Display.PolarAxes.RadialAxesOriginToPolarAxis = 1
+  calculator1Display.PolarAxes.Ratio = 1.0
+  calculator1Display.PolarAxes.PolarAxisColor = [1.0, 1.0, 1.0]
+  calculator1Display.PolarAxes.PolarArcsColor = [1.0, 1.0, 1.0]
+  calculator1Display.PolarAxes.LastRadialAxisColor = [1.0, 1.0, 1.0]
+  calculator1Display.PolarAxes.SecondaryPolarArcsColor = [1.0, 1.0, 1.0]
+  calculator1Display.PolarAxes.SecondaryRadialAxesColor = [1.0, 1.0, 1.0]
+  calculator1Display.PolarAxes.PolarAxisTitleVisibility = 1
+  calculator1Display.PolarAxes.PolarAxisTitle = 'Radial Distance'
+  calculator1Display.PolarAxes.PolarAxisTitleLocation = 'Bottom'
+  calculator1Display.PolarAxes.PolarLabelVisibility = 1
+  calculator1Display.PolarAxes.PolarLabelFormat = '%-#6.3g'
+  calculator1Display.PolarAxes.PolarLabelExponentLocation = 'Labels'
+  calculator1Display.PolarAxes.RadialLabelVisibility = 1
+  calculator1Display.PolarAxes.RadialLabelFormat = '%-#3.1f'
+  calculator1Display.PolarAxes.RadialLabelLocation = 'Bottom'
+  calculator1Display.PolarAxes.RadialUnitsVisibility = 1
+  calculator1Display.PolarAxes.ScreenSize = 10.0
+  calculator1Display.PolarAxes.PolarAxisTitleOpacity = 1.0
+  calculator1Display.PolarAxes.PolarAxisTitleFontFamily = 'Arial'
+  calculator1Display.PolarAxes.PolarAxisTitleFontFile = ''
+  calculator1Display.PolarAxes.PolarAxisTitleBold = 0
+  calculator1Display.PolarAxes.PolarAxisTitleItalic = 0
+  calculator1Display.PolarAxes.PolarAxisTitleShadow = 0
+  calculator1Display.PolarAxes.PolarAxisTitleFontSize = 12
+  calculator1Display.PolarAxes.PolarAxisLabelOpacity = 1.0
+  calculator1Display.PolarAxes.PolarAxisLabelFontFamily = 'Arial'
+  calculator1Display.PolarAxes.PolarAxisLabelFontFile = ''
+  calculator1Display.PolarAxes.PolarAxisLabelBold = 0
+  calculator1Display.PolarAxes.PolarAxisLabelItalic = 0
+  calculator1Display.PolarAxes.PolarAxisLabelShadow = 0
+  calculator1Display.PolarAxes.PolarAxisLabelFontSize = 12
+  calculator1Display.PolarAxes.LastRadialAxisTextOpacity = 1.0
+  calculator1Display.PolarAxes.LastRadialAxisTextFontFamily = 'Arial'
+  calculator1Display.PolarAxes.LastRadialAxisTextFontFile = ''
+  calculator1Display.PolarAxes.LastRadialAxisTextBold = 0
+  calculator1Display.PolarAxes.LastRadialAxisTextItalic = 0
+  calculator1Display.PolarAxes.LastRadialAxisTextShadow = 0
+  calculator1Display.PolarAxes.LastRadialAxisTextFontSize = 12
+  calculator1Display.PolarAxes.SecondaryRadialAxesTextOpacity = 1.0
+  calculator1Display.PolarAxes.SecondaryRadialAxesTextFontFamily = 'Arial'
+  calculator1Display.PolarAxes.SecondaryRadialAxesTextFontFile = ''
+  calculator1Display.PolarAxes.SecondaryRadialAxesTextBold = 0
+  calculator1Display.PolarAxes.SecondaryRadialAxesTextItalic = 0
+  calculator1Display.PolarAxes.SecondaryRadialAxesTextShadow = 0
+  calculator1Display.PolarAxes.SecondaryRadialAxesTextFontSize = 12
+  calculator1Display.PolarAxes.EnableDistanceLOD = 1
+  calculator1Display.PolarAxes.DistanceLODThreshold = 0.7
+  calculator1Display.PolarAxes.EnableViewAngleLOD = 1
+  calculator1Display.PolarAxes.ViewAngleLODThreshold = 0.7
+  calculator1Display.PolarAxes.SmallestVisiblePolarAngle = 0.5
+  calculator1Display.PolarAxes.PolarTicksVisibility = 1
+  calculator1Display.PolarAxes.ArcTicksOriginToPolarAxis = 1
+  calculator1Display.PolarAxes.TickLocation = 'Both'
+  calculator1Display.PolarAxes.AxisTickVisibility = 1
+  calculator1Display.PolarAxes.AxisMinorTickVisibility = 0
+  calculator1Display.PolarAxes.ArcTickVisibility = 1
+  calculator1Display.PolarAxes.ArcMinorTickVisibility = 0
+  calculator1Display.PolarAxes.DeltaAngleMajor = 10.0
+  calculator1Display.PolarAxes.DeltaAngleMinor = 5.0
+  calculator1Display.PolarAxes.PolarAxisMajorTickSize = 0.0
+  calculator1Display.PolarAxes.PolarAxisTickRatioSize = 0.3
+  calculator1Display.PolarAxes.PolarAxisMajorTickThickness = 1.0
+  calculator1Display.PolarAxes.PolarAxisTickRatioThickness = 0.5
+  calculator1Display.PolarAxes.LastRadialAxisMajorTickSize = 0.0
+  calculator1Display.PolarAxes.LastRadialAxisTickRatioSize = 0.3
+  calculator1Display.PolarAxes.LastRadialAxisMajorTickThickness = 1.0
+  calculator1Display.PolarAxes.LastRadialAxisTickRatioThickness = 0.5
+  calculator1Display.PolarAxes.ArcMajorTickSize = 0.0
+  calculator1Display.PolarAxes.ArcTickRatioSize = 0.3
+  calculator1Display.PolarAxes.ArcMajorTickThickness = 1.0
+  calculator1Display.PolarAxes.ArcTickRatioThickness = 0.5
+  calculator1Display.PolarAxes.Use2DMode = 0
+  calculator1Display.PolarAxes.UseLogAxis = 0
+
+  # hide data in view
+  Hide(fluxbp, renderView1)
+
+  # show color bar/color legend
+  calculator1Display.SetScalarBarVisibility(renderView1, True)
+
+  # update the view to ensure updated data information
+  renderView1.Update()
+
   if (direction == 'x'):
     # create a new 'Slice'
-    slice1 = Slice(registrationName='Slice1', Input=fluxbp)
+    slice1 = Slice(registrationName='Slice1', Input=calculator1)
     slice1.SliceType = 'Plane'
     slice1.HyperTreeGridSlicer = 'Plane'
     slice1.UseDual = 0
@@ -385,17 +732,17 @@ def extract_paraview_flux(direction, t):
     slice1.SliceOffsetValues = [0.0]
 
     # init the 'Plane' selected for 'SliceType'
-    slice1.SliceType.Origin = [1000.0000000000001, 1750.0000000000002, 210.00000000000003]
+    slice1.SliceType.Origin = [1000.0000000000001, 1750.0000000000002, 200.00000000000003]
     slice1.SliceType.Normal = [1.0, 0.0, 0.0]
     slice1.SliceType.Offset = 0.0
 
     # init the 'Plane' selected for 'HyperTreeGridSlicer'
-    slice1.HyperTreeGridSlicer.Origin = [1000.0000000000001, 1750.0000000000002, 210.00000000000003]
+    slice1.HyperTreeGridSlicer.Origin = [1000.0000000000001, 1750.0000000000002, 200.00000000000003]
     slice1.HyperTreeGridSlicer.Normal = [1.0, 0.0, 0.0]
     slice1.HyperTreeGridSlicer.Offset = 0.0
 
     # Properties modified on slice1.SliceType
-    slice1.SliceType.Origin = [750.0, 1750.0000000000002, 210.00000000000003]
+    slice1.SliceType.Origin = [750.0, 1750.0000000000002, 200.00000000000003]
 
     # show data in view
     slice1Display = Show(slice1, renderView1, 'GeometryRepresentation')
@@ -466,7 +813,7 @@ def extract_paraview_flux(direction, t):
     slice1Display.NonlinearSubdivisionLevel = 1
     slice1Display.UseDataPartitions = 0
     slice1Display.OSPRayUseScaleArray = 'All Approximate'
-    slice1Display.OSPRayScaleArray = 'f'
+    slice1Display.OSPRayScaleArray = 'Result'
     slice1Display.OSPRayScaleFunction = 'PiecewiseFunction'
     slice1Display.OSPRayMaterial = 'None'
     slice1Display.BlockSelectors = ['/']
@@ -474,7 +821,7 @@ def extract_paraview_flux(direction, t):
     slice1Display.BlockOpacities = []
     slice1Display.Orient = 0
     slice1Display.OrientationMode = 'Direction'
-    slice1Display.SelectOrientationVectors = 'None'
+    slice1Display.SelectOrientationVectors = 'Result'
     slice1Display.Scaling = 0
     slice1Display.ScaleMode = 'No Data Scaling Off'
     slice1Display.ScaleFactor = 350.00000000000006
@@ -499,12 +846,12 @@ def extract_paraview_flux(direction, t):
     """
     slice1Display.Emissive = 0
     slice1Display.ScaleByArray = 0
-    slice1Display.SetScaleArray = ['POINTS', 'f']
+    slice1Display.SetScaleArray = ['POINTS', 'Result']
     slice1Display.ScaleArrayComponent = 'X'
     slice1Display.UseScaleFunction = 1
     slice1Display.ScaleTransferFunction = 'PiecewiseFunction'
     slice1Display.OpacityByArray = 0
-    slice1Display.OpacityArray = ['POINTS', 'f']
+    slice1Display.OpacityArray = ['POINTS', 'Result']
     slice1Display.OpacityArrayComponent = 'X'
     slice1Display.OpacityTransferFunction = 'PiecewiseFunction'
     slice1Display.DataAxesGrid = 'GridAxesRepresentation'
@@ -529,7 +876,7 @@ def extract_paraview_flux(direction, t):
     slice1Display.PolarAxes = 'PolarAxesRepresentation'
 
     # init the 'PiecewiseFunction' selected for 'OSPRayScaleFunction'
-    slice1Display.OSPRayScaleFunction.Points = [0.0, 0.0, 0.5, 0.0, 1.0, 1.0, 0.5, 0.0]
+    slice1Display.OSPRayScaleFunction.Points = [2.1729651585822833e-11, 0.0, 0.5, 0.0, 5.3463965968432026e-05, 1.0, 0.5, 0.0]
     slice1Display.OSPRayScaleFunction.UseLogScale = 0
 
     # init the 'Arrow' selected for 'GlyphType'
@@ -713,7 +1060,7 @@ def extract_paraview_flux(direction, t):
     slice1Display.PolarAxes.UseLogAxis = 0
 
     # hide data in view
-    Hide(fluxbp, renderView1)
+    Hide(calculator1, renderView1)
 
     # show color bar/color legend
     slice1Display.SetScalarBarVisibility(renderView1, True)
@@ -724,7 +1071,7 @@ def extract_paraview_flux(direction, t):
     # create a new 'Glyph'
     glyph1 = Glyph(registrationName='Glyph1', Input=slice1,
         GlyphType='Arrow')
-    glyph1.OrientationArray = ['POINTS', 'No orientation array']
+    glyph1.OrientationArray = ['POINTS', 'Result']
     glyph1.ScaleArray = ['POINTS', 'No scale array']
     glyph1.VectorScaleMode = 'Scale by Magnitude'
     glyph1.ScaleFactor = 350.00000000000006
@@ -749,6 +1096,9 @@ def extract_paraview_flux(direction, t):
 
     # Properties modified on glyph1
     glyph1.OrientationArray = ['POINTS', 'f']
+    glyph1.ScaleArray = ['POINTS', 'Result']
+    glyph1.ScaleFactor = 7.0
+    glyph1.MaximumNumberOfSamplePoints = 800
 
     # show data in view
     glyph1Display = Show(glyph1, renderView1, 'GeometryRepresentation')
@@ -819,7 +1169,7 @@ def extract_paraview_flux(direction, t):
     glyph1Display.NonlinearSubdivisionLevel = 1
     glyph1Display.UseDataPartitions = 0
     glyph1Display.OSPRayUseScaleArray = 'All Approximate'
-    glyph1Display.OSPRayScaleArray = 'f'
+    glyph1Display.OSPRayScaleArray = 'Result'
     glyph1Display.OSPRayScaleFunction = 'PiecewiseFunction'
     glyph1Display.OSPRayMaterial = 'None'
     glyph1Display.BlockSelectors = ['/']
@@ -827,10 +1177,10 @@ def extract_paraview_flux(direction, t):
     glyph1Display.BlockOpacities = []
     glyph1Display.Orient = 0
     glyph1Display.OrientationMode = 'Direction'
-    glyph1Display.SelectOrientationVectors = 'None'
+    glyph1Display.SelectOrientationVectors = 'Result'
     glyph1Display.Scaling = 0
     glyph1Display.ScaleMode = 'No Data Scaling Off'
-    glyph1Display.ScaleFactor = 357.0
+    glyph1Display.ScaleFactor = 350.000000000001
     glyph1Display.SelectScaleArray = 'None'
     glyph1Display.GlyphType = 'Arrow'
     glyph1Display.UseGlyphTable = 0
@@ -839,7 +1189,7 @@ def extract_paraview_flux(direction, t):
     glyph1Display.UseGlyphCullingAndLOD = 0
     glyph1Display.LODValues = []
     glyph1Display.ColorByLODIndex = 0
-    glyph1Display.GaussianRadius = 17.85
+    glyph1Display.GaussianRadius = 17.50000000000005
     glyph1Display.ShaderPreset = 'Sphere'
     glyph1Display.CustomTriangleScale = 3
     glyph1Display.CustomShader = """ // This custom shader code define a gaussian blur
@@ -852,12 +1202,12 @@ def extract_paraview_flux(direction, t):
     """
     glyph1Display.Emissive = 0
     glyph1Display.ScaleByArray = 0
-    glyph1Display.SetScaleArray = ['POINTS', 'f']
+    glyph1Display.SetScaleArray = ['POINTS', 'Result']
     glyph1Display.ScaleArrayComponent = 'X'
     glyph1Display.UseScaleFunction = 1
     glyph1Display.ScaleTransferFunction = 'PiecewiseFunction'
     glyph1Display.OpacityByArray = 0
-    glyph1Display.OpacityArray = ['POINTS', 'f']
+    glyph1Display.OpacityArray = ['POINTS', 'Result']
     glyph1Display.OpacityArrayComponent = 'X'
     glyph1Display.OpacityTransferFunction = 'PiecewiseFunction'
     glyph1Display.DataAxesGrid = 'GridAxesRepresentation'
@@ -882,7 +1232,7 @@ def extract_paraview_flux(direction, t):
     glyph1Display.PolarAxes = 'PolarAxesRepresentation'
 
     # init the 'PiecewiseFunction' selected for 'OSPRayScaleFunction'
-    glyph1Display.OSPRayScaleFunction.Points = [0.0, 0.0, 0.5, 0.0, 1.0, 1.0, 0.5, 0.0]
+    glyph1Display.OSPRayScaleFunction.Points = [2.1729651585822833e-11, 0.0, 0.5, 0.0, 5.3463965968432026e-05, 1.0, 0.5, 0.0]
     glyph1Display.OSPRayScaleFunction.UseLogScale = 0
 
     # init the 'Arrow' selected for 'GlyphType'
@@ -1071,21 +1421,33 @@ def extract_paraview_flux(direction, t):
     # update the view to ensure updated data information
     renderView1.Update()
 
-    # Properties modified on glyph1
-    glyph1.ScaleFactor = 80.0
+    # set scalar coloring
+    ColorBy(glyph1Display, ('POINTS', 'Result', 'Magnitude'))
 
-    # Properties modified on glyph1
-    glyph1.MaximumNumberOfSamplePoints = 1000
+    # Hide the scalar bar for this color map if no visible data is colored by it.
+    HideScalarBarIfNotNeeded(fLUT, renderView1)
 
-    # update the view to ensure updated data information
-    renderView1.Update()
+    # rescale color and/or opacity maps used to include current data range
+    glyph1Display.RescaleTransferFunctionToDataRange(True, False)
+
+    # show color bar/color legend
+    glyph1Display.SetScalarBarVisibility(renderView1, True)
+
+    # get color transfer function/color map for 'Result'
+    resultLUT = GetColorTransferFunction('Result')
+
+    # get opacity transfer function/opacity map for 'Result'
+    resultPWF = GetOpacityTransferFunction('Result')
 
     # hide data in view
     Hide(slice1, renderView1)
+
+    # reset view to fit data
+    renderView1.ResetCamera(False)
   
   if (direction == 'y'):
     # create a new 'Slice'
-    slice1 = Slice(registrationName='Slice1', Input=fluxbp)
+    slice1 = Slice(registrationName='Slice1', Input=calculator1)
     slice1.SliceType = 'Plane'
     slice1.HyperTreeGridSlicer = 'Plane'
     slice1.UseDual = 0
@@ -1095,17 +1457,17 @@ def extract_paraview_flux(direction, t):
     slice1.SliceOffsetValues = [0.0]
 
     # init the 'Plane' selected for 'SliceType'
-    slice1.SliceType.Origin = [1000.0000000000001, 1750.0000000000002, 210.00000000000003]
+    slice1.SliceType.Origin = [1000.0000000000001, 1750.0000000000002, 200.00000000000003]
     slice1.SliceType.Normal = [1.0, 0.0, 0.0]
     slice1.SliceType.Offset = 0.0
 
     # init the 'Plane' selected for 'HyperTreeGridSlicer'
-    slice1.HyperTreeGridSlicer.Origin = [1000.0000000000001, 1750.0000000000002, 210.00000000000003]
+    slice1.HyperTreeGridSlicer.Origin = [1000.0000000000001, 1750.0000000000002, 200.00000000000003]
     slice1.HyperTreeGridSlicer.Normal = [1.0, 0.0, 0.0]
     slice1.HyperTreeGridSlicer.Offset = 0.0
 
     # Properties modified on slice1.SliceType
-    slice1.SliceType.Origin = [1000.0000000000001, 1450.0, 210.00000000000003]
+    slice1.SliceType.Origin = [1000.0000000000001, 1450.0, 200.00000000000003]
     slice1.SliceType.Normal = [0.0, 1.0, 0.0]
 
     # get active view
@@ -1114,14 +1476,14 @@ def extract_paraview_flux(direction, t):
     # show data in view
     slice1Display = Show(slice1, renderView1, 'GeometryRepresentation')
 
-    # get color transfer function/color map for 'f'
-    fLUT = GetColorTransferFunction('f')
+    # get color transfer function/color map for 'Result'
+    resultLUT = GetColorTransferFunction('Result')
 
     # trace defaults for the display properties.
     slice1Display.Selection = None
     slice1Display.Representation = 'Surface'
-    slice1Display.ColorArrayName = ['POINTS', 'f']
-    slice1Display.LookupTable = fLUT
+    slice1Display.ColorArrayName = ['POINTS', 'Result']
+    slice1Display.LookupTable = resultLUT
     slice1Display.MapScalars = 1
     slice1Display.MultiComponentsMapping = 0
     slice1Display.InterpolateScalarsBeforeMapping = 1
@@ -1183,7 +1545,7 @@ def extract_paraview_flux(direction, t):
     slice1Display.NonlinearSubdivisionLevel = 1
     slice1Display.UseDataPartitions = 0
     slice1Display.OSPRayUseScaleArray = 'All Approximate'
-    slice1Display.OSPRayScaleArray = 'f'
+    slice1Display.OSPRayScaleArray = 'Result'
     slice1Display.OSPRayScaleFunction = 'PiecewiseFunction'
     slice1Display.OSPRayMaterial = 'None'
     slice1Display.BlockSelectors = ['/']
@@ -1191,7 +1553,7 @@ def extract_paraview_flux(direction, t):
     slice1Display.BlockOpacities = []
     slice1Display.Orient = 0
     slice1Display.OrientationMode = 'Direction'
-    slice1Display.SelectOrientationVectors = 'None'
+    slice1Display.SelectOrientationVectors = 'Result'
     slice1Display.Scaling = 0
     slice1Display.ScaleMode = 'No Data Scaling Off'
     slice1Display.ScaleFactor = 200.00000000000003
@@ -1216,12 +1578,12 @@ def extract_paraview_flux(direction, t):
     """
     slice1Display.Emissive = 0
     slice1Display.ScaleByArray = 0
-    slice1Display.SetScaleArray = ['POINTS', 'f']
+    slice1Display.SetScaleArray = ['POINTS', 'Result']
     slice1Display.ScaleArrayComponent = 'X'
     slice1Display.UseScaleFunction = 1
     slice1Display.ScaleTransferFunction = 'PiecewiseFunction'
     slice1Display.OpacityByArray = 0
-    slice1Display.OpacityArray = ['POINTS', 'f']
+    slice1Display.OpacityArray = ['POINTS', 'Result']
     slice1Display.OpacityArrayComponent = 'X'
     slice1Display.OpacityTransferFunction = 'PiecewiseFunction'
     slice1Display.DataAxesGrid = 'GridAxesRepresentation'
@@ -1246,7 +1608,7 @@ def extract_paraview_flux(direction, t):
     slice1Display.PolarAxes = 'PolarAxesRepresentation'
 
     # init the 'PiecewiseFunction' selected for 'OSPRayScaleFunction'
-    slice1Display.OSPRayScaleFunction.Points = [0.0, 0.0, 0.5, 0.0, 1.0, 1.0, 0.5, 0.0]
+    slice1Display.OSPRayScaleFunction.Points = [2.1729651585822833e-11, 0.0, 0.5, 0.0, 5.3463965968432026e-05, 1.0, 0.5, 0.0]
     slice1Display.OSPRayScaleFunction.UseLogScale = 0
 
     # init the 'Arrow' selected for 'GlyphType'
@@ -1258,11 +1620,11 @@ def extract_paraview_flux(direction, t):
     slice1Display.GlyphType.Invert = 0
 
     # init the 'PiecewiseFunction' selected for 'ScaleTransferFunction'
-    slice1Display.ScaleTransferFunction.Points = [-5.279972908995458e-05, 0.0, 0.5, 0.0, 6.531965950502358e-05, 1.0, 0.5, 0.0]
+    slice1Display.ScaleTransferFunction.Points = [-1.2394185659340529, 0.0, 0.5, 0.0, 20.36701902033715, 1.0, 0.5, 0.0]
     slice1Display.ScaleTransferFunction.UseLogScale = 0
 
     # init the 'PiecewiseFunction' selected for 'OpacityTransferFunction'
-    slice1Display.OpacityTransferFunction.Points = [-5.279972908995458e-05, 0.0, 0.5, 0.0, 6.531965950502358e-05, 1.0, 0.5, 0.0]
+    slice1Display.OpacityTransferFunction.Points = [-1.2394185659340529, 0.0, 0.5, 0.0, 20.36701902033715, 1.0, 0.5, 0.0]
     slice1Display.OpacityTransferFunction.UseLogScale = 0
 
     # init the 'GridAxesRepresentation' selected for 'DataAxesGrid'
@@ -1430,21 +1792,24 @@ def extract_paraview_flux(direction, t):
     slice1Display.PolarAxes.UseLogAxis = 0
 
     # hide data in view
-    Hide(fluxbp, renderView1)
+    Hide(calculator1, renderView1)
 
     # show color bar/color legend
     slice1Display.SetScalarBarVisibility(renderView1, True)
 
+    # find source
+    fluxbp = FindSource('flux.bp')
+
     # update the view to ensure updated data information
     renderView1.Update()
 
-    # get opacity transfer function/opacity map for 'f'
-    fPWF = GetOpacityTransferFunction('f')
+    # get opacity transfer function/opacity map for 'Result'
+    resultPWF = GetOpacityTransferFunction('Result')
 
     # create a new 'Glyph'
     glyph1 = Glyph(registrationName='Glyph1', Input=slice1,
         GlyphType='Arrow')
-    glyph1.OrientationArray = ['POINTS', 'No orientation array']
+    glyph1.OrientationArray = ['POINTS', 'Result']
     glyph1.ScaleArray = ['POINTS', 'No scale array']
     glyph1.VectorScaleMode = 'Scale by Magnitude'
     glyph1.ScaleFactor = 200.00000000000003
@@ -1469,10 +1834,9 @@ def extract_paraview_flux(direction, t):
 
     # Properties modified on glyph1
     glyph1.OrientationArray = ['POINTS', 'f']
-    glyph1.ScaleFactor = 80.0
-
-    # Properties modified on glyph1
-    glyph1.MaximumNumberOfSamplePoints = 1000
+    glyph1.ScaleArray = ['POINTS', 'Result']
+    glyph1.ScaleFactor = 6.5
+    glyph1.MaximumNumberOfSamplePoints = 400
 
     # show data in view
     glyph1Display = Show(glyph1, renderView1, 'GeometryRepresentation')
@@ -1480,8 +1844,8 @@ def extract_paraview_flux(direction, t):
     # trace defaults for the display properties.
     glyph1Display.Selection = None
     glyph1Display.Representation = 'Surface'
-    glyph1Display.ColorArrayName = ['POINTS', 'f']
-    glyph1Display.LookupTable = fLUT
+    glyph1Display.ColorArrayName = ['POINTS', 'Result']
+    glyph1Display.LookupTable = resultLUT
     glyph1Display.MapScalars = 1
     glyph1Display.MultiComponentsMapping = 0
     glyph1Display.InterpolateScalarsBeforeMapping = 1
@@ -1543,7 +1907,7 @@ def extract_paraview_flux(direction, t):
     glyph1Display.NonlinearSubdivisionLevel = 1
     glyph1Display.UseDataPartitions = 0
     glyph1Display.OSPRayUseScaleArray = 'All Approximate'
-    glyph1Display.OSPRayScaleArray = 'f'
+    glyph1Display.OSPRayScaleArray = 'Result'
     glyph1Display.OSPRayScaleFunction = 'PiecewiseFunction'
     glyph1Display.OSPRayMaterial = 'None'
     glyph1Display.BlockSelectors = ['/']
@@ -1551,10 +1915,10 @@ def extract_paraview_flux(direction, t):
     glyph1Display.BlockOpacities = []
     glyph1Display.Orient = 0
     glyph1Display.OrientationMode = 'Direction'
-    glyph1Display.SelectOrientationVectors = 'None'
+    glyph1Display.SelectOrientationVectors = 'Result'
     glyph1Display.Scaling = 0
     glyph1Display.ScaleMode = 'No Data Scaling Off'
-    glyph1Display.ScaleFactor = 202.2304976463318
+    glyph1Display.ScaleFactor = 202.1867208480835
     glyph1Display.SelectScaleArray = 'None'
     glyph1Display.GlyphType = 'Arrow'
     glyph1Display.UseGlyphTable = 0
@@ -1563,7 +1927,7 @@ def extract_paraview_flux(direction, t):
     glyph1Display.UseGlyphCullingAndLOD = 0
     glyph1Display.LODValues = []
     glyph1Display.ColorByLODIndex = 0
-    glyph1Display.GaussianRadius = 10.111524882316589
+    glyph1Display.GaussianRadius = 10.109336042404175
     glyph1Display.ShaderPreset = 'Sphere'
     glyph1Display.CustomTriangleScale = 3
     glyph1Display.CustomShader = """ // This custom shader code define a gaussian blur
@@ -1576,12 +1940,12 @@ def extract_paraview_flux(direction, t):
     """
     glyph1Display.Emissive = 0
     glyph1Display.ScaleByArray = 0
-    glyph1Display.SetScaleArray = ['POINTS', 'f']
+    glyph1Display.SetScaleArray = ['POINTS', 'Result']
     glyph1Display.ScaleArrayComponent = 'X'
     glyph1Display.UseScaleFunction = 1
     glyph1Display.ScaleTransferFunction = 'PiecewiseFunction'
     glyph1Display.OpacityByArray = 0
-    glyph1Display.OpacityArray = ['POINTS', 'f']
+    glyph1Display.OpacityArray = ['POINTS', 'Result']
     glyph1Display.OpacityArrayComponent = 'X'
     glyph1Display.OpacityTransferFunction = 'PiecewiseFunction'
     glyph1Display.DataAxesGrid = 'GridAxesRepresentation'
@@ -1606,7 +1970,7 @@ def extract_paraview_flux(direction, t):
     glyph1Display.PolarAxes = 'PolarAxesRepresentation'
 
     # init the 'PiecewiseFunction' selected for 'OSPRayScaleFunction'
-    glyph1Display.OSPRayScaleFunction.Points = [0.0, 0.0, 0.5, 0.0, 1.0, 1.0, 0.5, 0.0]
+    glyph1Display.OSPRayScaleFunction.Points = [2.1729651585822833e-11, 0.0, 0.5, 0.0, 5.3463965968432026e-05, 1.0, 0.5, 0.0]
     glyph1Display.OSPRayScaleFunction.UseLogScale = 0
 
     # init the 'Arrow' selected for 'GlyphType'
@@ -1618,11 +1982,11 @@ def extract_paraview_flux(direction, t):
     glyph1Display.GlyphType.Invert = 0
 
     # init the 'PiecewiseFunction' selected for 'ScaleTransferFunction'
-    glyph1Display.ScaleTransferFunction.Points = [-4.9046469827282715e-05, 0.0, 0.5, 0.0, 4.9319311632046984e-05, 1.0, 0.5, 0.0]
+    glyph1Display.ScaleTransferFunction.Points = [-0.15466432247485518, 0.0, 0.5, 0.0, 19.580748091010545, 1.0, 0.5, 0.0]
     glyph1Display.ScaleTransferFunction.UseLogScale = 0
 
     # init the 'PiecewiseFunction' selected for 'OpacityTransferFunction'
-    glyph1Display.OpacityTransferFunction.Points = [-4.9046469827282715e-05, 0.0, 0.5, 0.0, 4.9319311632046984e-05, 1.0, 0.5, 0.0]
+    glyph1Display.OpacityTransferFunction.Points = [-0.15466432247485518, 0.0, 0.5, 0.0, 19.580748091010545, 1.0, 0.5, 0.0]
     glyph1Display.OpacityTransferFunction.UseLogScale = 0
 
     # init the 'GridAxesRepresentation' selected for 'DataAxesGrid'
@@ -1796,7 +2160,19 @@ def extract_paraview_flux(direction, t):
     renderView1.Update()
 
     # hide data in view
+    Hide(fluxbp, renderView1)
+
+    # hide data in view
     Hide(slice1, renderView1)
+
+    # reset view to fit data
+    renderView1.ResetCamera(False)
+
+    # # update the view to ensure updated data information
+    # renderView1.Update()
+
+    # # hide data in view
+    # Hide(slice1, renderView1)
 
   # set active source
   SetActiveSource(slice1)
@@ -1817,13 +2193,13 @@ def extract_paraview_flux(direction, t):
   Hide(slice1, renderView1)
 
   # Apply a preset using its name. Note this may not work as expected when presets have duplicate names.
-  fLUT.ApplyPreset('Viridis (matplotlib)', True)
+  resultLUT.ApplyPreset('Viridis (matplotlib)', True)
 
    # Rescale transfer function
-  fLUT.RescaleTransferFunction(0.0, 1e-08)
+  resultLUT.RescaleTransferFunction(0.0, 3.0e+01)
 
   # Rescale transfer function
-  fPWF.RescaleTransferFunction(0.0, 1e-08)
+  resultPWF.RescaleTransferFunction(0.0, 3.0e+01)
 
   # Time steps
   T = parameters["T"]
@@ -1844,7 +2220,7 @@ def extract_paraview_flux(direction, t):
   timeKeeper1 = GetTimeKeeper()
 
   # set active source
-  SetActiveSource(fluxbp)
+  SetActiveSource(calculator1)
 
   # toggle 3D widget visibility (only when running from the GUI)
   Hide3DWidgets(proxy=slice1.SliceType)
@@ -1863,7 +2239,7 @@ def extract_paraview_flux(direction, t):
     renderView1.CameraParallelScale = 2026.4747716169575
   if (direction == 'y'):
     # current camera placement for renderView1
-    renderView1.CameraPosition = [1005.3412954124145, -1885.334680151408, 318.0809373484606]
+    renderView1.CameraPosition = [1005.3412954124145, -2569.119649680569, 318.0809373484606]
     renderView1.CameraFocalPoint = [1005.3412954124145, 1450.1468505859375, 318.0809373484606]
     renderView1.CameraViewUp = [-4.440892098500626e-16, 0.0, -1.0]
     renderView1.CameraParallelScale = 1044.5762351384662
@@ -1886,6 +2262,9 @@ def extract_paraview_flux(direction, t):
   t_name = int(t)
   output_filename = f"flux_arrow_{direction}_{t_name}"
   
+  # hide data in view
+  Hide(slice1, renderView1)
+
   # save screenshot
   SaveScreenshot(f'../output/plots/flux/{output_filename}.png', renderView1, ImageResolution=[3*1096, 3*793],
       FontScaling='Scale fonts proportionally',
