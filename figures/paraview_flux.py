@@ -2266,7 +2266,7 @@ def extract_paraview_flux(direction, t):
   Hide(slice1, renderView1)
 
   # save screenshot
-  SaveScreenshot(f'../output/plots/flux/{output_filename}.png', renderView1, ImageResolution=[3*1096, 3*793],
+  SaveScreenshot(f'../output/plots/flux/{output_filename}.png', renderView1, ImageResolution=[12*1096, 12*793],
       FontScaling='Scale fonts proportionally',
       OverrideColorPalette='',
       StereoMode='No change',
