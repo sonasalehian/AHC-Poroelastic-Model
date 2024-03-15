@@ -31,9 +31,9 @@ parameters["P_r"] = 0.07  # pumping rate (m^3/s)
 
 # Define temporal parameters (s)
 parameters["t"] = 0  # Start time
-parameters["T"] = 345600  # (4d) #2073600 # (24d) # Final pumping time
+parameters["T"] = 345600  # (4d) # pumping time
 parameters["num_steps"] = 360
-parameters["T2"] = 1728000  # (20d) # Final time
+parameters["T2"] = 1728000  # (20d) # relaxation phase time
 parameters["num_steps2"] = 360
 
 # Aquitard layer parameters
@@ -64,40 +64,3 @@ parameters["k_y_bed"] = 5E-15  # medium permeability field (m^2)
 parameters["k_z_bed"] = 5E-15  # medium permeability field (m^2)
 parameters["S_e_bed"] = 0.8E-10  # specific storage (Pa^(-1))
 
-# # T = min
-# parameters["beta_s"] = 2.8E-15  # solid grain compressibility (m.min^2/kg)
-# parameters["phi"] = 0.32  # medium porosity(%)
-# parameters["beta_f"] = 1.2E-13  # fluid compresibility (m.min^2/kg)
-# parameters["alpha"] = 0.998  # Biot coeficient (-)
-# parameters["mu_f"] = 0.06  # fluid viscosity (kg/(m.min))
-# parameters["rhog"] = 35.3E6  # fluid specific weight (kg/(m^2.min^2))
-# parameters["P_r"] = 4.2  # pumping rate (m^3/min)
-
-# # Define temporal parameters (min)
-# parameters["t"] = 0  # Start time
-# parameters["T"] = 5760  # (4d) # 34560  # (24d) # Final time
-# parameters["num_steps"] = 360
-
-# # Aquitard layer parameters
-# parameters["lmbda_aqtrd"] = 1.36E13  # Lame's parameter (kg/(m.min^2))
-# parameters["G_aqtrd"] = 1.8E13  # shear modulus (kg/(m.min^2))
-# parameters["k_x_aqtrd"] = 1.1E-11  # medium permeability field (m^2)
-# parameters["k_y_aqtrd"] = 4.7E-13  # medium permeability field (m^2)
-# parameters["k_z_aqtrd"] = 5E-10  # medium permeability field (m^2)
-# parameters["S_e_aqtrd"] = 4.1E-14  # specific storage (m.min^2/kg)
-
-# # Aquifer layer parameters
-# parameters["lmbda_aqfr"] = 1.36E13  # Lame's parameter (kg/(m.min^2))
-# parameters["G_aqfr"] = 1.8E13  # shear modulus (kg/(m.min^2))
-# parameters["k_x_aqfr"] = 1.1E-11  # medium permeability field (m^2)
-# parameters["k_y_aqfr"] = 4.7E-13  # medium permeability field (m^2)
-# parameters["k_z_aqfr"] = 5E-10  # medium permeability field (m^2)
-# parameters["S_e_aqfr"] = 2.2E-14  # specific storage (m.min^2/kg)
-
-# # Bedrock layer parameters
-# parameters["lmbda_bed"] = 1.36E13  # Lame's parameter (kg/(m.min^2))
-# parameters["G_bed"] = 1.8E13  # shear modulus (kg/(m.min^2))
-# parameters["k_x_bed"] = 1.1E-11  # medium permeability field (m^2)
-# parameters["k_y_bed"] = 4.7E-13  # medium permeability field (m^2)
-# parameters["k_z_bed"] = 5E-10  # medium permeability field (m^2)
-# parameters["S_e_bed"] = 4.1E-14  # specific storage (m.min^2/kg)

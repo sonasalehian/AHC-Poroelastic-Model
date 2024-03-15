@@ -156,17 +156,12 @@ def boundary_conditions(parameters, domain, ft, V):
     UY, _ = V.sub(2).sub(1).collapse()
     u_Dy = fem.Function(UY)
 
-    # UZ, _ = V.sub(2).sub(2).collapse()
-    # u_Dz = fem.Function(UZ)
-
     bcu_sidesx = fem.dirichletbc(u_Dx, fem.locate_dofs_topological(
         (V.sub(2).sub(0), UX), fdim, ft.find(sidesx_marker)), V.sub(2).sub(0))
     bcu_sidesy = fem.dirichletbc(u_Dy, fem.locate_dofs_topological(
         (V.sub(2).sub(1), UY), fdim, ft.find(sidesy_marker)), V.sub(2).sub(1))
     bcu_bottom = fem.dirichletbc(u_D, fem.locate_dofs_topological(
         (V.sub(2), U), fdim, ft.find(bottom_marker)), V.sub(2))
-    # bcu_bottom = fem.dirichletbc(u_Dz, fem.locate_dofs_topological(
-    #     (V.sub(2).sub(2), UZ), fdim, ft.find(bottom_marker)), V.sub(2).sub(2))
 
     Q, _ = V.sub(0).collapse()
 
@@ -209,7 +204,6 @@ def boundary_conditions(parameters, domain, ft, V):
 
     bcs = {
         "bcu_bottom": bcu_bottom,
-        # "bcuy_bottom": bcuy_bottom,
         "bcu_sidesx": bcu_sidesx,
         "bcu_sidesy": bcu_sidesy,
         "bcp_bottom": bcp_bottom,
@@ -334,15 +328,13 @@ def solve(parameters):
     dt = T / num_steps  # time step size
     T2 = parameters["T2"]
     num_steps2 = parameters["num_steps2"]
-    dt2 = (T2-T) / num_steps2
+    dt2 = T2 / num_steps2
 
     # Define mesh
-    Lx = parameters["Lx"]
-    Ly = parameters["Ly"]
 
     gdim = parameters["gdim"]
 
-    top_marker, sidesx_marker, sidesy_marker, bottom_marker, drywell_marker, pumpingwell_marker = 4, 5, 6, 7, 8, 9
+    drywell_marker, pumpingwell_marker = 8, 9
 
     # Cteating the mesh
     model = create_mesh(parameters)
@@ -434,21 +426,22 @@ def solve(parameters):
     dx = ufl.Measure("dx", domain=domain)
     ds = ufl.Measure("ds", domain=domain, subdomain_data=ft)
     n = ufl.FacetNormal(domain)
+    delta_t = fem.Constant(domain, PETSc.ScalarType(dt))
 
     # Weak Forms #
     a = ufl.inner(S_e * p, p_t) * dx + ufl.inner(alpha * ufl.div(u), p_t) * dx\
-        + ufl.inner(dt * ufl.div(q), p_t) * dx \
+        + ufl.inner(delta_t * ufl.div(q), p_t) * dx \
         - ufl.inner(stress_bar(u, p), ufl.grad(u_t)) * dx \
-        + ufl.inner(dt * p, ufl.div(q_t)) * dx\
-        - ufl.inner(dt * invkappa * q, q_t) * dx\
+        + ufl.inner(delta_t * p, ufl.div(q_t)) * dx\
+        - ufl.inner(delta_t * invkappa * q, q_t) * dx\
         - (ufl.dot((stress_bar(u, p) * n), n))*(ufl.dot(u_t, n)) * ds(drywell_marker)\
         + (ufl.dot((stress_bar(u_t, p_t) * n), n)) * \
         (ufl.dot(u, n)) * ds(drywell_marker)
-    L = ufl.inner(dt * f_p, p_t) * dx + ufl.inner(S_e * p_n, p_t) * dx\
+    L = ufl.inner(delta_t * f_p, p_t) * dx + ufl.inner(S_e * p_n, p_t) * dx\
         + ufl.inner(alpha * ufl.div(u_n), p_t) * dx
-    # - ufl.inner(g_u, u_t) * ds(top_marker) \
-    # - ufl.inner(f_u, u_t) * dx \
-    # + ufl.inner(dt * p_d, ufl.inner(q_t, n)) * ds(4)
+        # - ufl.inner(g_u, u_t) * ds(top_marker) \
+        # - ufl.inner(f_u, u_t) * dx \
+        # + ufl.inner(delta_t * p_d, ufl.inner(q_t, n)) * ds(4)
 
     bilinear_form = fem.form(a)
     linear_form = fem.form(L)
@@ -472,10 +465,10 @@ def solve(parameters):
     print_root("Done.")
 
     # LOS displacement
-    teta = np.radians(180)  # Rotation around the axis y
+    theta = np.radians(180)  # Rotation around the axis y
     phi = np.radians(36)  # Rotation around the axis z
-    R1 = np.array([[np.cos(teta), 0, -np.sin(teta)],
-                   [0, 1, 0], [np.sin(teta), 0, np.cos(teta)]])
+    R1 = np.array([[np.cos(theta), 0, -np.sin(theta)],
+                   [0, 1, 0], [np.sin(theta), 0, np.cos(theta)]])
     R2 = np.array([[np.cos(phi), -np.sin(phi), 0],
                    [np.sin(phi), np.cos(phi), 0], [0, 0, 1]])
 
@@ -545,6 +538,7 @@ def solve(parameters):
         uh = ah.sub(2).collapse()
 
         u_los_h.interpolate(u_los_expr)
+        u_los_h.x.scatter_forward()
 
         # Update solution at previous time step (u_n)
         p_n.x.array[:] = ph.x.array
@@ -555,6 +549,8 @@ def solve(parameters):
             # Interpolate q into a different finite element space
             qh_Q0.interpolate(q_n)
             ph_P0.interpolate(p_n)
+            qh_Q0.x.scatter_forward()
+            ph_P0.x.scatter_forward()
 
             # Write solution to file
             pfile_vtx.write(t)
@@ -577,14 +573,13 @@ def solve(parameters):
     bcs_dict["bcp_pumpingwell"] = bcp_pumpingwell
     bcs = list(bcs_dict.values())
 
-    # bcs = [bcu_bottom, bcu_sidesx, bcu_sidesy, bcux_drywell, bcuy_drywell,
-    #        bcux_pumpingwell, bcuy_pumpingwell, bcp_bottom, bcp_top, bcp_sidesx,
-    #        bcp_sidesy, bcp_drywell, bcp_pumpingwell]
     print_root("Done.")
 
-    # NOTE: No new KSP operator! Might be OK, needs checking.
+    delta_t.value = dt2
+    # bilinear_form = fem.form(a)
     A = fem.petsc.assemble_matrix(bilinear_form, bcs=bcs)
     A.assemble()
+    solver.setOperators(A)
     b = fem.petsc.create_vector(linear_form)
         
     for i in range(num_steps2):
@@ -614,6 +609,7 @@ def solve(parameters):
 
         # Interpolate LOS displacement
         u_los_h.interpolate(u_los_expr)
+        u_los_h.x.scatter_forward()
 
         # Update solution at previous time step (u_n)
         p_n.x.array[:] = ph.x.array
@@ -624,6 +620,8 @@ def solve(parameters):
             # Interpolate q into a different finite element space
             qh_Q0.interpolate(q_n)
             ph_P0.interpolate(p_n)
+            qh_Q0.x.scatter_forward()
+            ph_P0.x.scatter_forward()
 
             # Write solution to file
             pfile_vtx.write(t)

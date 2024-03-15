@@ -2207,7 +2207,7 @@ def extract_paraview_flux(direction, t):
   dt = T/num_steps
   T2 = parameters["T2"]
   num_steps2 = parameters["num_steps2"]
-  dt2 = (T2-T)/num_steps2
+  dt2 = T2/num_steps2
 
   if t <= 18:
     # Properties modified on animationScene1

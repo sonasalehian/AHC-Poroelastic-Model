@@ -2,22 +2,22 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import numpy as np
 #  Comment when running scienceplots
-from data_extraction_timeseries import timeseries_data
+# from data_extraction_timeseries import timeseries_data
 ##
 import sys
 sys.path.insert(0, "../anderson_junction_subsec5.1")
 from default_parameters import parameters
 
-# import scienceplots
+import scienceplots
 
-# plt.style.use(['science'])
+plt.style.use(['science'])
 
 time_steps = np.array([6, 12, 18, 36])
 
 directions = ['x', 'y']
 for direction in directions:
     #  Comment when running scienceplots
-    timeseries_data(direction)
+    # timeseries_data(direction)
     ##
     uz = np.zeros((1001, 2, time_steps.shape[0]))
 
@@ -37,7 +37,7 @@ for direction in directions:
         i += 1
 
     plt.plot(uz[:, 0, 0]-Lw, uz[:, 1, 0]*1000, label=rf'$t = T_p/3$', color='lightseagreen', linestyle='solid')
-    plt.plot(uz[:, 0, 1]-Lw, uz[:, 1, 1]*1000, label=rf'$t = 2*T_p/3$', color='orange', linestyle='dashed')
+    plt.plot(uz[:, 0, 1]-Lw, uz[:, 1, 1]*1000, label=rf'$t = 2 T_p/3$', color='orange', linestyle='dashed')
     plt.plot(uz[:, 0, 2]-Lw, uz[:, 1, 2]*1000, label=rf'$t = T_p$', color='olive', linestyle='dashdot')
     plt.plot(uz[:, 0, 3]-Lw, uz[:, 1, 3]*1000, label=rf'$t = T_e$', color='darkmagenta', linestyle='dotted')
 
