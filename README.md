@@ -7,17 +7,16 @@ Description
 
 The AHC-Poroelastic-Model is a conceptual model of aquifer system (particularly Anderson
 Junction aquifer test) to test hypothesis about the potential value of using inSAR data to infer
-information about anisotropy hydraulic conductivity (AHC) in aquifers. The model incorporates
+information about anisotropic hydraulic conductivity (AHC) in aquifers. The model incorporates
 Biot equations to represent poroelastic behavior, and these equations are effectively solved
 using the finite element method (FEM) within the Fenicsx framework. DOLFINx offers efficient and
 robust numerical methods for solving partial differential equations, making it well-suited for
 our groundwater modeling purposes. 
 
 For a comprehensive understanding of this project, please refer to the
-corresponding paper: [insert paper link Here].
+corresponding paper: [[Can the anisotropic hydraulic conductivity of an aquifer be determined using surface displacement data? A case study](https://hdl.handle.net/10993/61290)].
 
-This repository was also permanently archived at: [insert figshare doi link
-here].
+This repository was also permanently archived at: [[10.5281/zenodo.10890121](https://zenodo.org/records/11060063)].
 
 Instructions
 ============
@@ -30,12 +29,12 @@ Instructions
 
    Then navigate to the folder that you want to run a code.
        
-2. Within the container, you can execute the Python files denoted with an
-   asterisk (\*) in the table (except those within the figures folder):
+2. Within the container, you can execute the Python files started with "0" in
+   the table (you need to execute the 01 python files first and then the 02) :
 
        python3 [name_of_file].py
        
-3. For executing plot-related Python files in the `figures/` folder, You
+4. For executing plot-related Python files in the `figures/` folder, You
    must first install `paraview` and the Python package `scienceplots`
    inside the running container before executing the scripts.
 
