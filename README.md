@@ -41,7 +41,8 @@ Instructions
        apt install paraview
        pip install scienceplots
    Then you can execute the python files started with "02":
-   	pvpython 02_[name_of_file].py
+
+       pvpython 02_[name_of_file].py
 
 Description of files
 ====================
