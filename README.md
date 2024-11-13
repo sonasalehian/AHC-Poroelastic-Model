@@ -1,5 +1,5 @@
 
-Anisotropy Hydraulic Conductivity Poroelastic Model
+Anisotropic Hydraulic Conductivity Poroelastic Model
 ===================================================
 
 Description
@@ -218,7 +218,7 @@ Citing
 Please consider citing this code and related paper if you find it useful.
 
    @misc{salehian_ahc-poroelastic-model_2023,
-         title = {{Anisotropy} {Hydraulic} {Conductivity} { Poroelatic {Model} {(AHC-Poroelastic-Model)}},
+         title = {{Anisotropic} {Hydraulic} {Conductivity} {Poroelatic} {Model} {(AHC-Poroelastic-Model)}},
          author = {Salehian Ghamsari, Sona, and Hale, Jack S.},
          month = sep,
          year = {2023},
