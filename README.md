@@ -226,7 +226,7 @@ Please consider citing this code and related paper if you find it useful.
          keywords = {poroelastic model, anisotropy hydraulic conductivity, FEniCS, finite element methods},
    }
 
-along with the appropriate general `FEniCS citations <http://fenicsproject.org/citing>`_.
+along with the appropriate general `FEniCS citations <http://fenicsproject.org/citing>`.
 
 Authors (alphabetical)
 ======================
