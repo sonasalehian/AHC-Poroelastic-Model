@@ -1,5 +1,5 @@
 
-Anisotropy Hydraulic Conductivity Poroelastic Model
+Anisotropic Hydraulic Conductivity Poroelastic Model
 ===================================================
 
 Description
@@ -7,17 +7,16 @@ Description
 
 The AHC-Poroelastic-Model is a conceptual model of aquifer system (particularly Anderson
 Junction aquifer test) to test hypothesis about the potential value of using inSAR data to infer
-information about anisotropy hydraulic conductivity (AHC) in aquifers. The model incorporates
+information about anisotropic hydraulic conductivity (AHC) in aquifers. The model incorporates
 Biot equations to represent poroelastic behavior, and these equations are effectively solved
 using the finite element method (FEM) within the Fenicsx framework. DOLFINx offers efficient and
 robust numerical methods for solving partial differential equations, making it well-suited for
 our groundwater modeling purposes. 
 
 For a comprehensive understanding of this project, please refer to the
-corresponding paper: [insert paper link Here].
+corresponding paper: [[Can the anisotropic hydraulic conductivity of an aquifer be determined using surface displacement data? A case study](https://hdl.handle.net/10993/61290)].
 
-This repository was also permanently archived at: [insert figshare doi link
-here].
+This repository was also permanently archived at: [[10.5281/zenodo.10890121](https://zenodo.org/records/11060063)].
 
 Instructions
 ============
@@ -30,17 +29,20 @@ Instructions
 
    Then navigate to the folder that you want to run a code.
        
-2. Within the container, you can execute the Python files denoted with an
-   asterisk (\*) in the table (except those within the figures folder):
+2. Within the container, you can execute the Python files started with "01" in
+   the folders (ensure you run the '01' files before the '02' files):
 
-       python3 [name_of_file].py
+       python3 01_[name_of_file].py
        
-3. For executing plot-related Python files in the `figures/` folder, You
+4. For executing plot-related Python files in the `figures/` folder, You
    must first install `paraview` and the Python package `scienceplots`
    inside the running container before executing the scripts.
 
        apt install paraview
        pip install scienceplots
+   Then you can execute the python files started with "02":
+
+       pvpython 02_[name_of_file].py
 
 Description of files
 ====================
@@ -51,12 +53,12 @@ subsection within the paper. The folders are as follows:
 1. `anderson_junction_subsec5.1/`: This folder pertains to the Anderson Junction
    case study and its associated details.
   
-2. `different_options_subsec5.2/`: Here, you will find information relevant to the
-   exploration of different options, as discussed in subsection 5.2 of the
+2. `anisotropy_ratio_subsec5.2/`: This folder is dedicated to the investigation of
+   anisotropy ratios, the focus of subsection 5.2.
+
+3. `different_options_subsec5.3/`: Here, you will find information relevant to the
+   exploration of different options, as discussed in subsection 5.3 of the
    paper.
-      
-3. `anisotropy_ratio_subsec5.4/`: This folder is dedicated to the investigation of
-   anisotropy ratios, the focus of subsection 5.4.
        
 4. `figures/`: Within this folder, you can access scripts to generate all of
    the figures referred to in the paper.
@@ -97,7 +99,16 @@ paper.
             <td>To print in parallel running</td>
         </tr>
         <tr>
-            <td rowspan=3>different_options_subsec5.2</td>
+            <td rowspan=2>anisotropy_ratio_subsec5.2</td>
+            <td>01_anisotropy_ratio1_1.py</td>
+            <td>To examine the model using the Anderson Junction aquifer test, and Anderson Junction aquifer properties but with same hydraulic conductivity in directions of x and y (isotropy)</td>
+        </tr>
+        <tr>
+            <td>01_anisotropy_ratio3_1.py</td>
+            <td>To examine the model using the Anderson Junction aquifer test, and Anderson Junction aquifer properties but with anisotropy ratio of 3:1</td>
+        </tr>
+        <tr>
+            <td rowspan=3>different_options_subsec5.3</td>
             <td>01_strong_pumping.py</td>
             <td>To examine the model using Anderson Junction aquifer properties and the Anderson Junction aquifer test but with 8 times pumping rate</td>
         </tr>
@@ -109,17 +120,8 @@ paper.
             <td>01_long_pumping_32d.py</td>
             <td>To examine the model using Anderson Junction aquifer properties and the Anderson Junction aquifer test but with 32 days of pumping instead of 4 days</td>
         </tr>
-            <tr>
-            <td rowspan=2>anisotropy_ratio_subsec5.4</td>
-            <td>01_anisotropy_ratio1_1.py</td>
-            <td>To examine the model using the Anderson Junction aquifer test, and Anderson Junction aquifer properties but with same hydraulic conductivity in directions of x and y (isotropy)</td>
-        </tr>
         <tr>
-            <td>01_anisotropy_ratio3_1.py</td>
-            <td>To examine the model using the Anderson Junction aquifer test, and Anderson Junction aquifer properties but with anisotropy ratio of 3:1</td>
-        </tr>
-        <tr>
-            <td rowspan=13>figures</td>
+	    <td rowspan=13>figures</td>
             <td>02_plot_ar.py</td>
             <td>To generate anisotropy ratio subfigures existing in paper</td>
         </tr>
@@ -216,15 +218,15 @@ Citing
 Please consider citing this code and related paper if you find it useful.
 
    @misc{salehian_ahc-poroelastic-model_2023,
-         title = {{Anisotropy} {Hydraulic} {Conductivity} { Poroelatic {Model} {(AHC-Poroelastic-Model)}},
+         title = {{Anisotropic} {Hydraulic} {Conductivity} {Poroelatic} {Model} {(AHC-Poroelastic-Model)}},
          author = {Salehian Ghamsari, Sona, and Hale, Jack S.},
          month = sep,
          year = {2023},
-         doi = {},
+         doi = {10.5281/zenodo.10890121},
          keywords = {poroelastic model, anisotropy hydraulic conductivity, FEniCS, finite element methods},
    }
 
-along with the appropriate general `FEniCS citations <http://fenicsproject.org/citing>`_.
+along with the appropriate general `FEniCS citations <http://fenicsproject.org/citing>`.
 
 Authors (alphabetical)
 ======================
