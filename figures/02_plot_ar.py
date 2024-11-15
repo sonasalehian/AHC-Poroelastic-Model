@@ -51,11 +51,11 @@ for direction in directions:
     i = 0
     for inputfile in inputfiles:
         line = pd.read_csv(f'../output/plots/data/{inputfile}_{direction}.csv')
-        data = pd.DataFrame(line, columns=['arc_length', 'u_n:2'])
+        data = pd.DataFrame(line, columns=['arc_length', '-u_z'])
         uz[:, :, i] = data
         i += 1
     
-    plt.plot(uz[:, 0, 0]-Lw, uz[:, 1, 0]*1000, label=r'AJ $\sim$24:1', color='lightseagreen', linestyle='solid')
+    plt.plot(uz[:, 0, 0]-Lw, uz[:, 1, 0]*1000, label=r'AJ $\sim$ 24:1', color='lightseagreen', linestyle='solid')
     plt.plot(uz[:, 0, 1]-Lw, uz[:, 1, 1]*1000, label='Anisotropy ratio 3:1', color='darkmagenta', linestyle='dashed')
     plt.plot(uz[:, 0, 2]-Lw, uz[:, 1, 2]*1000, label='Anisotropy ratio 1:1', color='olive', linestyle='dashdot')
         
@@ -63,11 +63,11 @@ for direction in directions:
         plt.xlabel(r'$y-L_{yw}$ (m)', fontsize=10)
     elif direction == 'y':
         plt.xlabel(r'$x-L_{xw}$ (m)', fontsize=10)
-    plt.ylabel(r"$u_z$ (mm)", fontsize=10)
+    plt.ylabel(r"$- u_z$ (mm)", fontsize=10)
     # plt.title(fr'z-displacement along line ${direction}$ for different anisotropy ratio with fixed $k_y$', fontsize=10)
     plt.legend(fontsize=9)
     plt.tight_layout()
-    plt.ylim(-0.2, 3.2)
+    plt.ylim(-3.2, 0.2)
 
     # Check whether the specified output directory exists or not
     isExist = os.path.exists("../output/plots/Anisotropy_ratio")

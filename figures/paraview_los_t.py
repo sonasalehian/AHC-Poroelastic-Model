@@ -372,6 +372,12 @@ def plot_LOS_T(inputfile, T):
   # get opacity transfer function/opacity map for 'f'
   fPWF = GetOpacityTransferFunction('f')
 
+  # Apply a preset using its name. Note this may not work as expected when presets have duplicate names.
+  fLUT.ApplyPreset('Viridis (matplotlib)', True)
+
+  # invert the transfer function
+  fLUT.InvertTransferFunction()
+
   # Properties modified on animationScene1
   animationScene1.AnimationTime = T
 
@@ -382,13 +388,13 @@ def plot_LOS_T(inputfile, T):
   renderView1.ResetCamera(False)
 
   # Rescale transfer function
-  fLUT.RescaleTransferFunction(-0.005, 0.0001)
+  fLUT.RescaleTransferFunction(-0.018, 0.0006)
 
   # Rescale transfer function
-  fPWF.RescaleTransferFunction(-0.005, 0.0001)
+  fPWF.RescaleTransferFunction(-0.018, 0.0006)
 
-  # Apply a preset using its name. Note this may not work as expected when presets have duplicate names.
-  fLUT.ApplyPreset('Viridis (matplotlib)', True)
+  # # Apply a preset using its name. Note this may not work as expected when presets have duplicate names.
+  # fLUT.ApplyPreset('Viridis (matplotlib)', True)
 
   # get layout
   layout1 = GetLayout()

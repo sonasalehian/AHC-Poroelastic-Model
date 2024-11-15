@@ -36,10 +36,10 @@ for direction in directions:
         uz[:, :, i] = data
         i += 1
 
-    plt.plot(uz[:, 0, 0]-Lw, uz[:, 1, 0]*1000, label=rf'$t = T_p/3$', color='lightseagreen', linestyle='solid')
-    plt.plot(uz[:, 0, 1]-Lw, uz[:, 1, 1]*1000, label=rf'$t = 2 T_p/3$', color='orange', linestyle='dashed')
-    plt.plot(uz[:, 0, 2]-Lw, uz[:, 1, 2]*1000, label=rf'$t = T_p$', color='olive', linestyle='dashdot')
-    plt.plot(uz[:, 0, 3]-Lw, uz[:, 1, 3]*1000, label=rf'$t = T_e$', color='darkmagenta', linestyle='dotted')
+    plt.plot(uz[:, 0, 0]-Lw, uz[:, 1, 0]*-1000, label=rf'$t = T_p/3$', color='lightseagreen', linestyle='solid')
+    plt.plot(uz[:, 0, 1]-Lw, uz[:, 1, 1]*-1000, label=rf'$t = 2 \ T_p/3$', color='orange', linestyle='dashed')
+    plt.plot(uz[:, 0, 2]-Lw, uz[:, 1, 2]*-1000, label=rf'$t = T_p$', color='olive', linestyle='dashdot')
+    plt.plot(uz[:, 0, 3]-Lw, uz[:, 1, 3]*-1000, label=rf'$t = T_e$', color='darkmagenta', linestyle='dotted')
 
     if direction == 'x':
         plt.xlabel(r'$y-L_{yw}$ (m)', fontsize=10)
@@ -47,10 +47,10 @@ for direction in directions:
     elif direction == 'y':
         plt.xlabel(r'$x-L_{xw}$ (m)', fontsize=10)
         # plt.title(rf'z-displacement along line $xx\prime$', fontsize=10)
-    plt.ylabel(r'$u_z$ (mm)', fontsize=10)
+    plt.ylabel(r'$- u_z$ (mm)', fontsize=10)
     plt.legend(fontsize=10)
     plt.tight_layout()
-    plt.ylim(-0.2, 3.2)
+    plt.ylim(-3.2, 0.2)
 
     plt.savefig(f"../output/plots/graph_{direction}.png")  # save as png
     plt.savefig(f"../output/plots/graph_{direction}.pdf", format="pdf")  # save as pdf

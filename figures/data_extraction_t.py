@@ -378,8 +378,74 @@ def data_deformation_T(inputfile):
     # get the time-keeper
     timeKeeper1 = GetTimeKeeper()
 
+    # create a new 'Calculator'
+    calculator1 = Calculator(registrationName='Calculator1', Input=deformationbp)
+    calculator1.Function = ''
+
+    # Properties modified on calculator1
+    calculator1.ResultArrayName = '-u_z'
+    calculator1.Function = 'u_n_Z*(-1)'
+
+    # show data in view
+    calculator1Display = Show(calculator1, renderView1, 'UnstructuredGridRepresentation')
+
+    # get color transfer function/color map for 'u_z'
+    u_zLUT = GetColorTransferFunction('u_z')
+
+    # get opacity transfer function/opacity map for 'u_z'
+    u_zPWF = GetOpacityTransferFunction('u_z')
+
+    # trace defaults for the display properties.
+    calculator1Display.Representation = 'Surface'
+    calculator1Display.ColorArrayName = ['POINTS', '-u_z']
+    calculator1Display.LookupTable = u_zLUT
+    calculator1Display.SelectTCoordArray = 'None'
+    calculator1Display.SelectNormalArray = 'None'
+    calculator1Display.SelectTangentArray = 'None'
+    calculator1Display.OSPRayScaleArray = '-u_z'
+    calculator1Display.OSPRayScaleFunction = 'PiecewiseFunction'
+    calculator1Display.SelectOrientationVectors = 'None'
+    calculator1Display.ScaleFactor = 350.00000000000006
+    calculator1Display.SelectScaleArray = '-u_z'
+    calculator1Display.GlyphType = 'Arrow'
+    calculator1Display.GlyphTableIndexArray = '-u_z'
+    calculator1Display.GaussianRadius = 17.500000000000004
+    calculator1Display.SetScaleArray = ['POINTS', '-u_z']
+    calculator1Display.ScaleTransferFunction = 'PiecewiseFunction'
+    calculator1Display.OpacityArray = ['POINTS', '-u_z']
+    calculator1Display.OpacityTransferFunction = 'PiecewiseFunction'
+    calculator1Display.DataAxesGrid = 'GridAxesRepresentation'
+    calculator1Display.PolarAxes = 'PolarAxesRepresentation'
+    calculator1Display.ScalarOpacityFunction = u_zPWF
+    calculator1Display.ScalarOpacityUnitDistance = 60.29637080930927
+    calculator1Display.OpacityArrayName = ['POINTS', '-u_z']
+
+    # init the 'PiecewiseFunction' selected for 'OSPRayScaleFunction'
+    calculator1Display.OSPRayScaleFunction.Points = [2.1729651585822833e-11, 0.0, 0.5, 0.0, 5.3463965968432026e-05, 1.0, 0.5, 0.0]
+
+    # init the 'PiecewiseFunction' selected for 'ScaleTransferFunction'
+    calculator1Display.ScaleTransferFunction.Points = [-0.0030087333695041373, 0.0, 0.5, 0.0, 7.855859118287116e-07, 1.0, 0.5, 0.0]
+
+    # init the 'PiecewiseFunction' selected for 'OpacityTransferFunction'
+    calculator1Display.OpacityTransferFunction.Points = [-0.0030087333695041373, 0.0, 0.5, 0.0, 7.855859118287116e-07, 1.0, 0.5, 0.0]
+
+    # hide data in view
+    Hide(deformationbp, renderView1)
+
+    # show color bar/color legend
+    calculator1Display.SetScalarBarVisibility(renderView1, True)
+
+    # update the view to ensure updated data information
+    renderView1.Update()
+
+    # Rescale transfer function
+    u_zLUT.RescaleTransferFunction(-0.0030087333695041373, 7.855859118288279e-07)
+
+    # Rescale transfer function
+    u_zPWF.RescaleTransferFunction(-0.0030087333695041373, 7.855859118288279e-07)
+
     # create a new 'Plot Over Line'
-    plotOverLine1 = PlotOverLine(registrationName='PlotOverLine1', Input=deformationbp)
+    plotOverLine1 = PlotOverLine(registrationName='PlotOverLine1', Input=calculator1)
     plotOverLine1.Point1 = [0.0, 0.0, 0.0]
     plotOverLine1.Point2 = [2000.0000000000002, 3500.0000000000005, 420.00000000000006]
     plotOverLine1.SamplingPattern = 'Sample Uniformly'
@@ -405,8 +471,8 @@ def data_deformation_T(inputfile):
     # trace defaults for the display properties.
     plotOverLine1Display.Selection = None
     plotOverLine1Display.Representation = 'Surface'
-    plotOverLine1Display.ColorArrayName = ['POINTS', 'u_n']
-    plotOverLine1Display.LookupTable = u_nLUT
+    plotOverLine1Display.ColorArrayName = ['POINTS', '-u_z']
+    plotOverLine1Display.LookupTable = u_zLUT
     plotOverLine1Display.MapScalars = 1
     plotOverLine1Display.MultiComponentsMapping = 0
     plotOverLine1Display.InterpolateScalarsBeforeMapping = 1
@@ -848,15 +914,15 @@ def data_deformation_T(inputfile):
     plotOverLine1Display_1.AttributeType = 'Point Data'
     plotOverLine1Display_1.UseIndexForXAxis = 0
     plotOverLine1Display_1.XArrayName = 'arc_length'
-    plotOverLine1Display_1.SeriesVisibility = ['u_n_Magnitude']
-    plotOverLine1Display_1.SeriesLabel = ['arc_length', 'arc_length', 'u_n_X', 'u_n_X', 'u_n_Y', 'u_n_Y', 'u_n_Z', 'u_n_Z', 'u_n_Magnitude', 'u_n_Magnitude', 'vtkValidPointMask', 'vtkValidPointMask', 'Points_X', 'Points_X', 'Points_Y', 'Points_Y', 'Points_Z', 'Points_Z', 'Points_Magnitude', 'Points_Magnitude']
-    plotOverLine1Display_1.SeriesColor = ['arc_length', '0', '0', '0', 'u_n_X', '0.8899977111467154', '0.10000762951094835', '0.1100022888532845', 'u_n_Y', '0.220004577706569', '0.4899977111467155', '0.7199969481956207', 'u_n_Z', '0.30000762951094834', '0.6899977111467155', '0.2899977111467155', 'u_n_Magnitude', '0.6', '0.3100022888532845', '0.6399938963912413', 'vtkValidPointMask', '1', '0.5000076295109483', '0', 'Points_X', '0.6500038147554742', '0.3400015259021897', '0.16000610360875867', 'Points_Y', '0', '0', '0', 'Points_Z', '0.8899977111467154', '0.10000762951094835', '0.1100022888532845', 'Points_Magnitude', '0.220004577706569', '0.4899977111467155', '0.7199969481956207']
-    plotOverLine1Display_1.SeriesPlotCorner = ['arc_length', '0', 'u_n_X', '0', 'u_n_Y', '0', 'u_n_Z', '0', 'u_n_Magnitude', '0', 'vtkValidPointMask', '0', 'Points_X', '0', 'Points_Y', '0', 'Points_Z', '0', 'Points_Magnitude', '0']
+    plotOverLine1Display_1.SeriesVisibility = ['-u_z_Magnitude']
+    plotOverLine1Display_1.SeriesLabel = ['arc_length', 'arc_length', '-u_z_X', '-u_z_X', '-u_z_Y', '-u_z_Y', '-u_z_Z', '-u_z_Z', '-u_z_Magnitude', '-u_z_Magnitude', 'vtkValidPointMask', 'vtkValidPointMask', 'Points_X', 'Points_X', 'Points_Y', 'Points_Y', 'Points_Z', 'Points_Z', 'Points_Magnitude', 'Points_Magnitude']
+    plotOverLine1Display_1.SeriesColor = ['arc_length', '0', '0', '0', '-u_z_X', '0.8899977111467154', '0.10000762951094835', '0.1100022888532845', '-u_z_Y', '0.220004577706569', '0.4899977111467155', '0.7199969481956207', '-u_z_Z', '0.30000762951094834', '0.6899977111467155', '0.2899977111467155', '-u_z_Magnitude', '0.6', '0.3100022888532845', '0.6399938963912413', 'vtkValidPointMask', '1', '0.5000076295109483', '0', 'Points_X', '0.6500038147554742', '0.3400015259021897', '0.16000610360875867', 'Points_Y', '0', '0', '0', 'Points_Z', '0.8899977111467154', '0.10000762951094835', '0.1100022888532845', 'Points_Magnitude', '0.220004577706569', '0.4899977111467155', '0.7199969481956207']
+    plotOverLine1Display_1.SeriesPlotCorner = ['arc_length', '0', '-u_z_X', '0', '-u_z_Y', '0', '-u_z_Z', '0', '-u_z_Magnitude', '0', 'vtkValidPointMask', '0', 'Points_X', '0', 'Points_Y', '0', 'Points_Z', '0', 'Points_Magnitude', '0']
     plotOverLine1Display_1.SeriesLabelPrefix = ''
-    plotOverLine1Display_1.SeriesLineStyle = ['arc_length', '1', 'u_n_X', '1', 'u_n_Y', '1', 'u_n_Z', '1', 'u_n_Magnitude', '1', 'vtkValidPointMask', '1', 'Points_X', '1', 'Points_Y', '1', 'Points_Z', '1', 'Points_Magnitude', '1']
-    plotOverLine1Display_1.SeriesLineThickness = ['arc_length', '2', 'u_n_X', '2', 'u_n_Y', '2', 'u_n_Z', '2', 'u_n_Magnitude', '2', 'vtkValidPointMask', '2', 'Points_X', '2', 'Points_Y', '2', 'Points_Z', '2', 'Points_Magnitude', '2']
-    plotOverLine1Display_1.SeriesMarkerStyle = ['arc_length', '0', 'u_n_X', '0', 'u_n_Y', '0', 'u_n_Z', '0', 'u_n_Magnitude', '0', 'vtkValidPointMask', '0', 'Points_X', '0', 'Points_Y', '0', 'Points_Z', '0', 'Points_Magnitude', '0']
-    plotOverLine1Display_1.SeriesMarkerSize = ['arc_length', '4', 'u_n_X', '4', 'u_n_Y', '4', 'u_n_Z', '4', 'u_n_Magnitude', '4', 'vtkValidPointMask', '4', 'Points_X', '4', 'Points_Y', '4', 'Points_Z', '4', 'Points_Magnitude', '4']
+    plotOverLine1Display_1.SeriesLineStyle = ['arc_length', '1', '-u_z_X', '1', '-u_z_Y', '1', '-u_z_Z', '1', '-u_z_Magnitude', '1', 'vtkValidPointMask', '1', 'Points_X', '1', 'Points_Y', '1', 'Points_Z', '1', 'Points_Magnitude', '1']
+    plotOverLine1Display_1.SeriesLineThickness = ['arc_length', '2', '-u_z_X', '2', '-u_z_Y', '2', '-u_z_Z', '2', '-u_z_Magnitude', '2', 'vtkValidPointMask', '2', 'Points_X', '2', 'Points_Y', '2', 'Points_Z', '2', 'Points_Magnitude', '2']
+    plotOverLine1Display_1.SeriesMarkerStyle = ['arc_length', '0', '-u_z_X', '0', '-u_z_Y', '0', '-u_z_Z', '0', '-u_z_Magnitude', '0', 'vtkValidPointMask', '0', 'Points_X', '0', 'Points_Y', '0', 'Points_Z', '0', 'Points_Magnitude', '0']
+    plotOverLine1Display_1.SeriesMarkerSize = ['arc_length', '4', '-u_z_X', '4', '-u_z_Y', '4', '-u_z_Z', '4', '-u_z_Magnitude', '4', 'vtkValidPointMask', '4', 'Points_X', '4', 'Points_Y', '4', 'Points_Z', '4', 'Points_Magnitude', '4']
 
     # get layout
     layout1 = GetLayoutByName("Layout #1")
@@ -865,11 +931,11 @@ def data_deformation_T(inputfile):
     AssignViewToLayout(view=lineChartView1, layout=layout1, hint=0)
 
     # Properties modified on plotOverLine1Display_1
-    plotOverLine1Display_1.SeriesPlotCorner = ['Points_Magnitude', '0', 'Points_X', '0', 'Points_Y', '0', 'Points_Z', '0', 'arc_length', '0', 'u_n_Magnitude', '0', 'u_n_X', '0', 'u_n_Y', '0', 'u_n_Z', '0', 'vtkValidPointMask', '0']
-    plotOverLine1Display_1.SeriesLineStyle = ['Points_Magnitude', '1', 'Points_X', '1', 'Points_Y', '1', 'Points_Z', '1', 'arc_length', '1', 'u_n_Magnitude', '1', 'u_n_X', '1', 'u_n_Y', '1', 'u_n_Z', '1', 'vtkValidPointMask', '1']
-    plotOverLine1Display_1.SeriesLineThickness = ['Points_Magnitude', '2', 'Points_X', '2', 'Points_Y', '2', 'Points_Z', '2', 'arc_length', '2', 'u_n_Magnitude', '2', 'u_n_X', '2', 'u_n_Y', '2', 'u_n_Z', '2', 'vtkValidPointMask', '2']
-    plotOverLine1Display_1.SeriesMarkerStyle = ['Points_Magnitude', '0', 'Points_X', '0', 'Points_Y', '0', 'Points_Z', '0', 'arc_length', '0', 'u_n_Magnitude', '0', 'u_n_X', '0', 'u_n_Y', '0', 'u_n_Z', '0', 'vtkValidPointMask', '0']
-    plotOverLine1Display_1.SeriesMarkerSize = ['Points_Magnitude', '4', 'Points_X', '4', 'Points_Y', '4', 'Points_Z', '4', 'arc_length', '4', 'u_n_Magnitude', '4', 'u_n_X', '4', 'u_n_Y', '4', 'u_n_Z', '4', 'vtkValidPointMask', '4']
+    plotOverLine1Display_1.SeriesPlotCorner = ['Points_Magnitude', '0', 'Points_X', '0', 'Points_Y', '0', 'Points_Z', '0', 'arc_length', '0', '-u_z_Magnitude', '0', '-u_z_X', '0', '-u_z_Y', '0', '-u_z_Z', '0', 'vtkValidPointMask', '0']
+    plotOverLine1Display_1.SeriesLineStyle = ['Points_Magnitude', '1', 'Points_X', '1', 'Points_Y', '1', 'Points_Z', '1', 'arc_length', '1', '-u_z_Magnitude', '1', '-u_z_X', '1', '-u_z_Y', '1', '-u_z_Z', '1', 'vtkValidPointMask', '1']
+    plotOverLine1Display_1.SeriesLineThickness = ['Points_Magnitude', '2', 'Points_X', '2', 'Points_Y', '2', 'Points_Z', '2', 'arc_length', '2', '-u_z_Magnitude', '2', '-u_z_X', '2', '-u_z_Y', '2', '-u_z_Z', '2', 'vtkValidPointMask', '2']
+    plotOverLine1Display_1.SeriesMarkerStyle = ['Points_Magnitude', '0', 'Points_X', '0', 'Points_Y', '0', 'Points_Z', '0', 'arc_length', '0', '-u_z_Magnitude', '0', '-u_z_X', '0', '-u_z_Y', '0', '-u_z_Z', '0', 'vtkValidPointMask', '0']
+    plotOverLine1Display_1.SeriesMarkerSize = ['Points_Magnitude', '4', 'Points_X', '4', 'Points_Y', '4', 'Points_Z', '4', 'arc_length', '4', '-u_z_Magnitude', '4', '-u_z_X', '4', '-u_z_Y', '4', '-u_z_Z', '4', 'vtkValidPointMask', '4']
 
     # update the view to ensure updated data information
     lineChartView1.Update()
@@ -892,7 +958,7 @@ def data_deformation_T(inputfile):
     SaveData(f'../output/plots/data/{inputfile}_{direction}.csv', proxy=plotOverLine1, WriteTimeSteps=0,
         Filenamesuffix='_%d',
         ChooseArraysToWrite=1,
-        PointDataArrays=['arc_length', 'u_n', 'vtkValidPointMask'],
+        PointDataArrays=['arc_length', '-u_z', 'vtkValidPointMask'],
         CellDataArrays=[],
         FieldDataArrays=[],
         VertexDataArrays=[],

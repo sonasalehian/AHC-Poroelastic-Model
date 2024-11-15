@@ -99,15 +99,15 @@ paper.
         <tr>
             <td rowspan=3>different_options_subsec5.2</td>
             <td>01_strong_pumping.py</td>
-            <td>To examine the model using Anderson Junction aquifer properties and the Anderson Junction aquifer test but with double pumping rate</td>
+            <td>To examine the model using Anderson Junction aquifer properties and the Anderson Junction aquifer test but with 8 times pumping rate</td>
         </tr>
         <tr>
-            <td>01_long_pumping_8d.py</td>
-            <td>To examine the model using Anderson Junction aquifer properties and the Anderson Junction aquifer test but with 8 days of pumping instead of 4 days</td>
+            <td>01_strong_long_pumping.py</td>
+            <td>To examine the model using Anderson Junction aquifer properties and the Anderson Junction aquifer test but with 8 days of pumping instead of 4 days and 8 times pumping rate</td>
         </tr>
         <tr>
-            <td>01_long_pumping_16d.py</td>
-            <td>To examine the model using Anderson Junction aquifer properties and the Anderson Junction aquifer test but with 16 days of pumping instead of 4 days</td>
+            <td>01_long_pumping_32d.py</td>
+            <td>To examine the model using Anderson Junction aquifer properties and the Anderson Junction aquifer test but with 32 days of pumping instead of 4 days</td>
         </tr>
             <tr>
             <td rowspan=2>anisotropy_ratio_subsec5.4</td>
@@ -121,19 +121,19 @@ paper.
         <tr>
             <td rowspan=13>figures</td>
             <td>02_plot_ar.py</td>
-            <td>To generate anisotropy ratio subfigures (figure 15)</td>
+            <td>To generate anisotropy ratio subfigures existing in paper</td>
         </tr>
          <tr>
             <td>02_plot_flux.py</td>
-            <td>To generate the flux subfigures (Figure 11)</td>
+            <td>To generate the flux subfigures existing in paper</td>
         </tr>
          <tr>
             <td>02_plot_graphs.py</td>
-            <td>To generate the deformation in different time in x, and y direction (Figure 12)</td>
+            <td>To generate the deformation in different time in x, and y direction</td>
         </tr>
          <tr>
             <td>02_plot_long_strong.py</td>
-            <td>To generate the subfigures of different aquifer tests (Figures 13, and 14)</td>
+            <td>To generate the subfigures of different aquifer tests</td>
         </tr>
         <tr>
             <td>02_plot_mesh_2d_en.py</td>
@@ -141,11 +141,11 @@ paper.
         </tr>
         <tr>
             <td>02_plot_mesh_2d_zy.py</td>
-            <td>To plot the cross-section of mesh in the zy direction (figure 8)</td>
+            <td>To plot the cross-section of mesh in the zy direction</td>
         </tr>
         <tr>
             <td>02_plot_mesh_3d.py</td>
-            <td>To plot the 3D mesh (figure 8)</td>
+            <td>To plot the 3D mesh</td>
         </tr>
             <td>data_extraction_t.py</td>
             <td>To extract surface displacement along xx’ and yy’ in time T for different anisotropy ratio. It contains “data_deformation_T” function that used in plot_ar.py</td>
@@ -193,17 +193,17 @@ can be achieved through several avenues:
 
 - Adjusting Aquifer Properties and Test Parameters. To alter aquifer
    properties or aquifer test parameters, simply edit the file named
-   "default_parameters.py".
+   `default_parameters.py`.
        
 - Revamping Aquifer System Structure. For a complete overhaul of the aquifer
-   system's structure, navigate to the "create_mesh" function within "model.py"
+   system's structure, navigate to the `create_mesh` function within `model.py`
    and make the necessary adjustments.
        
 - Changing Boundary Conditions. To modify boundary conditions, access the
   `boundary_conditions` function within `model.py` and tailor them as needed.
        
 - Assigning Layer-Specific Parameters: When specific parameters need to be
-  assigned to different layers, utilize the "equation_parameters" function
+  assigned to different layers, utilize the `equation_parameters` function
   found in `model.py`.
        
 - Exploring New Scenarios: Should you wish to examine novel scenarios,
